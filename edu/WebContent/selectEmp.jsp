@@ -8,6 +8,13 @@
 <head>
 <meta charset="UTF-8">
 <title>selectEmp.jsp</title>
+<script>
+function empSelelct(id, name){
+	opener.document.frm.manager_id.value = id;
+	opener.document.frm.name.value = name;
+	window.close();
+}
+</script>
 </head>
 <body>
 <%
@@ -26,6 +33,9 @@
 		out.print(emp.getFirst_name() + ", ");
 		out.print(emp.getLast_name() + ", ");
 		out.print(emp.getEmail() + "<br>");
+%>
+	<a href="#" onclick="empSelelct('<%=emp.getEmployee_id()%>','<%=emp.getFirst_name()%> <%=emp.getLast_name()%>')">선택</a><br>
+<% 
 	}
 %>
 </body>

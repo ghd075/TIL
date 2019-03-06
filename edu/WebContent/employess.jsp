@@ -12,7 +12,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="EmpServ" method="post">
+<form action="EmpServ" method="post" name="frm">
 	employee_id <input type="number" min="300" step="1" name="employee_id"><br> 
 	first_name <input name="fires_name"><br>
 	last_name <input name="last_name"><br>
@@ -50,6 +50,7 @@
 	<input type="text" name="manager_id">
 	<input type="text" name="name">
 	<button type="button" onclick="window.open('selectEmp.jsp','emp','width=400,height=400')">사원검색</button><br>	
+	
 	
 	<button type="submit">등록</button>
 	<button type="reset">초기화</button>
