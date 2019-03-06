@@ -12,6 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="header.jsp" %>
+<h3 id="top">사원등록</h3>
 <form action="EmpServ" method="post" name="frm">
 	employee_id <input type="number" min="300" step="1" name="employee_id"><br> 
 	first_name <input name="fires_name"><br>
@@ -55,6 +57,7 @@
 	<button type="submit">등록</button>
 	<button type="reset">초기화</button>
 </form>
+<a href="#top">맨위로</a>
 </body>
 </html>
 

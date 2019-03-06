@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>jsp 스크립트 태그 연습</title>
 </head>
+<%@ include file="header.jsp" %>
 <body>
 	<h4>jsp 스크립트 태그 연습</h4>
 	<%! //변수나 메서드를 선언
