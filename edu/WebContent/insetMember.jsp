@@ -38,7 +38,6 @@ label {
 </style>
 </head>
 <body>
-<%@ include file="header.jsp" %>
 	<form action="">
 		<table>
 			<tr>

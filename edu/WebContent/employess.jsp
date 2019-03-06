@@ -12,7 +12,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="header.jsp" %>
 <h3 id="top">사원등록</h3>
 <form action="EmpServ" method="post" name="frm">
 	employee_id <input type="number" min="300" step="1" name="employee_id"><br> 
