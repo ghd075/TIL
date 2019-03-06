@@ -53,11 +53,11 @@
 	<input type="text" name="name">
 	<button type="button" onclick="window.open('selectEmp.jsp','emp','width=400,height=400')">사원검색</button><br>	
 	
-	
 	<button type="submit">등록</button>
 	<button type="reset">초기화</button>
 </form>
 <a href="#top">맨위로</a>
+<%@ include file="footer.jsp" %>
 </body>
 </html>
 
