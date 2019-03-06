@@ -9,11 +9,11 @@
 <body>
 	<h4>jsp 스크립트 태그 연습</h4>
 	<%! //변수나 메서드를 선언
-		String[] boddys = {"독서","운동","등산","스키"};
+		String[] hoddys = {"독서","운동","등산","스키"};
 	%>
 	<select>
-		<% for(int i = 0; i<boddys.length;i++){ %>
-		<option><%=boddys[i] %></option>
+		<% for(int i = 0; i<hoddys.length;i++){ %>
+		<option><%=hoddys[i] %></option>
 		<%} %>
 	</select>
 	<br>
