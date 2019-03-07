@@ -21,4 +21,7 @@
     <servlet-name>First</servlet-name>
     <url-pattern>/snd</url-pattern>
   </servlet-mapping>
+  <session-config>
+  	<session-timeout>10</session-timeout> <!-- 분단위 -->
+  </session-config>
 </web-app>
