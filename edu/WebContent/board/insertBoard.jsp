@@ -9,8 +9,10 @@
 <body>
 <h4>게시판등록</h4>
 <form action="insertBoardproc.jsp">
-	작성자<input name="userName"><br>
-	내용<input name="contents"><br>
+	<table>
+	<tr><th>작성자</th><td><input name="userName"></td></tr>
+	<tr><th>내용</th><td><textarea name="contents" rows="3" cols="85"></textarea></td></tr>
+	</table>
 	<button type="submit">등록</button>
 </form>
 </body>
