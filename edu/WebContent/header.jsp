@@ -1,5 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% //header.jsp
+//페이지 요청건수 카운터
+	Integer cnt = (Integer) application.getAttribute("cnt");
+	if(cnt != null){
+		cnt++;
+	}else{
+		cnt = 0;
+	}
+	application.setAttribute("cnt", cnt);
+	out.print("방문횟수 : " + cnt);
+%>
 <%
 	String userId = (String)session.getAttribute("userId");
 	if(userId != null){
