@@ -14,7 +14,7 @@
 	}
 	out.print(msg);
 %>
-	<form action="loginProc.jsp" method="get">
+	<form action="loginProc.jsp" method="post">
 		id <input name="userId"><br>
 		pw <input name="userPw"><br>
 		<button>로그인</button>
