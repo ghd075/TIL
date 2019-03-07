@@ -38,17 +38,19 @@ public class DdayServ extends HttpServlet {
 		
 		Calendar cal = Calendar.getInstance();
 		//날짜입력값을 받아서 남은 일수 계산 
-		Date today = new Date();
-		long day1 = today.getTime();
+		Calendar today = Calendar.getInstance();
 		String dday = request.getParameter("dday");
 		String[] day2 = dday.split("-");
 		int y = Integer.parseInt(day2[0]);
 		int m = Integer.parseInt(day2[1]);
 		int d = Integer.parseInt(day2[2]);
 		cal.set(y, m, d);
-		long cnt = day1 - cal.getTimeInMillis();
+		System.out.println(cal);
+		long day1 = today.getTimeInMillis()/(24*60*60*1000);
+		long day3 = cal.getTimeInMillis()/(24*60*60*1000);
+		long cnt = day1 - day3;
 		
-		out.print("남은일수는 " + cnt/1000/60/60/24);
+		out.print("남은일수는 " + (int)cnt);
 	
 	}
 
