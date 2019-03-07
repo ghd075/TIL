@@ -1,10 +1,11 @@
 package com.edu.emp;
 
+import java.io.*;
 import java.sql.*;
 import java.util.*;
 import com.edu.common.ConnectionManager;
 
-public class EmpDAO {
+public class EmpDAO implements Serializable{
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;

@@ -14,7 +14,7 @@
 <body>
 <%@include file="header.jsp" %>
 <h3 id="top">사원등록</h3>
-<form action="EmpServ" method="post" name="frm">
+<form action="empProc.jsp" method="post" name="frm">
 	employee_id <input type="number" min="300" step="1" name="employee_id"><br> 
 	first_name <input name="fires_name"><br>
 	last_name <input name="last_name"><br>
