@@ -1,10 +1,11 @@
+<%@page import="com.edu.member.LoginDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	//로그인 처리
 	String userId = request.getParameter("userId");
 	String userPw = request.getParameter("userPw");
-	if (userId.equals("admin")) {
+	if (LoginDAO.getInstance().loginCheck(userId, userPw)) {
 		//세션에 로그인 정보 저장
 		session.setAttribute("userId", userId);
 		//response.sendRedirect("login2.jsp");
