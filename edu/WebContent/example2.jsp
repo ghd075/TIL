@@ -7,6 +7,7 @@
 <title>jsp 스크립트 태그 연습</title>
 </head>
 <body>
+<%@include file="header.jsp" %>
 	<h4>jsp 스크립트 태그 연습</h4>
 	<%! //변수나 메서드를 선언
 		String[] hoddys = {"독서","운동","등산","스키"};

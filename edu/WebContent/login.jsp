@@ -4,10 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login.jsp</title>
+<title>로그인</title>
 </head>
 <body>
-	<form action="LoginServ" method="get">
+<%
+	String msg = (String)request.getAttribute("msg");
+	if(msg == null){
+		msg = "";
+	}
+	out.print(msg);
+%>
+	<form action="loginProc.jsp" method="get">
 		id <input name="userId"><br>
 		pw <input name="userPw"><br>
 		<button>로그인</button>
