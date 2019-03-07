@@ -10,7 +10,8 @@
 <title>selectDeptList.jsp</title>
 </head>
 <body>
-<a href="insertDept.jsp">부서목록</a>
+<h4>부서목록</h4>
+<a href="insertDept.jsp">부서등록</a>
 <table>
 	<tr><td>부서번호</td><td>부서명</td><td>지역</td><td>매니저</td></tr>
 <%
@@ -19,7 +20,9 @@
 		DeptBeans beans = list.get(i);
 %>
 	<tr>
-		<td><%=beans.getDepartment_id() %></td>
+		<td>
+		<a href="updateDept.jsp?department_id=<%=beans.getDepartment_id()%>"><%=beans.getDepartment_id()%>
+		</a></td>
 		<td><%=beans.getDepartment_name() %></td>
 		<td><%=beans.getLocation_id() %></td>
 		<td><%=beans.getManager_id() %></td>
