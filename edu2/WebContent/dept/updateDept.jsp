@@ -15,7 +15,7 @@
 	String department_id = request.getParameter("department_id");
 	DeptBeans beans = DeptDAO.getInstance().getDept(department_id);
 %>
-<form action="updateDeptProc.jsp">
+<form action="updateDept">
 	부서번호<input name="department_id" value="<%=beans.getDepartment_id() %>"><br>
 	부서명<input name="department_name" value="<%=beans.getDepartment_name() %>"><br>
 	지역<input name="manager_id" value="<%=beans.getLocation_id()==null ? "" : beans.getLocation_id() %>"><br>

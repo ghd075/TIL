@@ -8,11 +8,11 @@
 </head>
 <body>
 <h4>부서등록</h4>
-<form action="insertDeptServ">
+<form action="insertDept">
 	부서번호<input name="department_id"><br>
 	부서명<input name="department_name"><br>
-	지역<input name="manager_id"><br>
-	매니저<input name="location_id"><br>
+	지역<input name="location_id"><br>
+	매니저<input name="manager_id"><br>
 	<button type="submit">등록</button>
 </form>
 </body>
