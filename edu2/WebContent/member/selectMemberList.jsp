@@ -11,8 +11,8 @@
 </head>
 <body>
 <%@include file="../main/header.jsp"%>
-<h4>부서목록</h4>
-<a href="insertMember.jsp">부서등록</a>
+<h4>회원목록</h4>
+<a href="insertMember.jsp">회원등록</a>
 <table>
 	<tr><td>아이디</td><td>비밀번호</td><td>이름</td><td>직업</td><td>취미</td><td>자기소개</td><td>성별</td><td>가입일자</td></tr>
 <%

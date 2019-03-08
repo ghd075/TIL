@@ -14,7 +14,7 @@ import org.apache.commons.beanutils.BeanUtils;
 /**
  * Servlet implementation class updateDeptServ
  */
-@WebServlet("/dept/updateDept")
+@WebServlet("/updateDept")
 public class updateDeptServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,7 +31,7 @@ public class updateDeptServ extends HttpServlet {
 			e.printStackTrace();
 		}
 		DeptDAO.getInstance().deptUpdate(beans);
-		response.sendRedirect("selectDeptList.jsp");
+		response.sendRedirect("dept/selectDeptList.jsp");
 	}
 
 	/**

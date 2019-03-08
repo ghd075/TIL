@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DeleteDeptservlet
  */
-@WebServlet("/dept/deptDelete")
+@WebServlet("/deptDelete")
 public class DeleteDeptservlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String department_id = request.getParameter("department_id");
 		DeptDAO.getInstance().deptDelete(department_id);
-		response.sendRedirect("selectDeptList.jsp");
+		response.sendRedirect("dept/selectDeptList.jsp");
 	}
 
 	/**

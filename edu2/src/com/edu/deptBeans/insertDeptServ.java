@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-@WebServlet("/dept/insertDept")
+@WebServlet("/insertDept")
 public class insertDeptServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -35,7 +35,7 @@ public class insertDeptServ extends HttpServlet {
 			e.printStackTrace();
 		}
 		DeptDAO.getInstance().deptInsert(beans);
-		response.sendRedirect("selectDeptList.jsp");
+		response.sendRedirect("dept/selectDeptList.jsp");
 		//빈즈에 데이터 담기
 		/*
 		 * beans.setDepartment_id(request.getParameter("department_id"));
