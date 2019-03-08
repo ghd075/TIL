@@ -22,25 +22,26 @@ public class LoginoutServ extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); //클라이언트로부터 세션정보를 가져온다.
 		session.invalidate(); //세션 무효화
-		response.sendRedirect("login.jsp"); //login.jsp페이지로 이동
+		response.sendRedirect("main/main.jsp"); //login.jsp페이지로 이동
 	}
 	
 	//로그인처리
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8"); //인코딩 방식 설정
 		String id = request.getParameter("userid");
 		String pw = request.getParameter("userpw");
 		boolean result = LoginDAO.getInstance().loginCheck(id, pw);
 		if(result == true) { //로그인 된 경우
 			HttpSession session = request.getSession(); //클라이언트로부터 세션정보를 가져온다.
 			session.setAttribute("userid", id);
-			response.sendRedirect("login2.jsp");
+			response.sendRedirect("main/main.jsp");
 		}else {
 			
 			PrintWriter out = response.getWriter();
 			out.print("<script>");
-			out.print("alert('login id error')");
-			out.print("location='login.jsp')");
-			out.print("</script>");
+			out.print("alert('로그인 실패하였습니다.');");
+			out.print("location='main/main.jsp'");
+			out.print("</script>");		
 		}
 		System.out.println("로그인 서블릿 실행");
 		

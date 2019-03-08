@@ -10,6 +10,7 @@
 <title>selectDeptList.jsp</title>
 </head>
 <body>
+<%@include file="../main/header.jsp"%>
 <h4>게시판목록</h4>
 <a href="insertBoard.jsp">게시판등록</a>
 <table>
@@ -28,5 +29,6 @@
 	</tr>
 <%} %>
 </table>
+<%@include file="../main/footer.jsp"%>
 </body>
 </html>
