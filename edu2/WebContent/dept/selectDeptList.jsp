@@ -1,6 +1,6 @@
+<%@page import="com.edu.deptBeans.DeptDAO"%>
 <%@page import="com.edu.deptBeans.DeptBeans"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.edu.deptBeans.DeptDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

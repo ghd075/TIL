@@ -1,5 +1,5 @@
-<%@page import="com.edu.deptBeans.DeptBeans"%>
 <%@page import="com.edu.deptBeans.DeptDAO"%>
+<%@page import="com.edu.deptBeans.DeptBeans"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
