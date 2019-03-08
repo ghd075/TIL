@@ -51,7 +51,6 @@
           	maxWaitMillis : 커넥션 준비하기 위해 최대로 기다리는 밀리초(1000 == 1초)
            -->
   </GlobalNamingResources>
-
   <!-- A "Service" is a collection of one or more "Connectors" that share
        a single "Container" Note:  A "Service" is not itself a "Container",
        so you may not define subcomponents such as "Valves" at this level.
@@ -162,7 +161,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="jsp" path="/shop" reloadable="true" source="org.eclipse.jst.jee.server:jsp"/><Context docBase="exam" path="/exam" reloadable="true" source="org.eclipse.jst.jee.server:exam"/></Host>
+      <Context docBase="edu2" path="/edu2" reloadable="true" source="org.eclipse.jst.jee.server:edu2"/></Host>
     </Engine>
   </Service>
 </Server>

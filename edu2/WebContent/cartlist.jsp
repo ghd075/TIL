@@ -10,7 +10,7 @@
 <body>
 <h4>장바구니리스트</h4>
 <%
-	List<String> cartlist=(List<String>)session.getAttribute("cart");
+	List<String> cartlist=(List<String>)application.getAttribute("cart");
 	for(int i=0; i<cartlist.size();i++){
 		out.print(cartlist.get(i)+"<br>");
 	}
