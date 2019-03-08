@@ -10,6 +10,7 @@
 <title>selectDeptList.jsp</title>
 </head>
 <body>
+<%@ include file="../header.jsp" %>
 <h4>부서목록</h4>
 <a href="insertDept.jsp">부서등록</a>
 <table>

@@ -20,8 +20,8 @@
 	부서명<input name="department_name" value="<%=beans.getDepartment_name() %>"><br>
 	지역<input name="manager_id" value="<%=beans.getLocation_id()==null ? "" : beans.getLocation_id() %>"><br>
 	매니저<input name="location_id" value="<%=beans.getManager_id()==null ? "" : beans.getManager_id() %>"><br>
-	<button type="submit">등록</button><br>
-	<a href="deleteDeptProc.jsp?department_id=<%=beans.getDepartment_id()%>">삭제</a>
+	<button type="submit">수정</button>
+	<a href="deptDelete?department_id=<%=beans.getDepartment_id()%>">삭제</a>
 </form>
 </body>
 </html>
