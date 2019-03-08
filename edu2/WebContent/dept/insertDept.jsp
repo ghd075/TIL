@@ -8,7 +8,7 @@
 </head>
 <body>
 <h4>부서등록</h4>
-<form action="insertDept">
+<form action="<%=request.getContextPath()%>/insertDept">
 	부서번호<input name="department_id"><br>
 	부서명<input name="department_name"><br>
 	지역<input name="location_id"><br>

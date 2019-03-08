@@ -9,127 +9,117 @@ import java.util.List;
 
 import com.edu.common.ConnectionManager;
 
-
 public class MemberDAO {
 	Connection conn = null;
-	PreparedStatement psmt;
-	ResultSet rs =null;
-	//싱글톤
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	
+	// 싱글톤 : static 필드
 	static MemberDAO instance;
+
 	public static MemberDAO getInstance() {
-		if(instance==null) 
-			instance=new MemberDAO();			
-			return instance;
+		if (instance == null)
+			instance = new MemberDAO();
+		return instance;
 	}
-	//삽입
+	
+	//등록
 	public int insert(MemberDTO dto) {
-		int r=0;
+		int r = 0;
 		try {
-			conn=ConnectionManager.getConnnect();
+			//1. DB연결
+			conn = ConnectionManager.getConnnect();
+			//트랜잭션 처리
 			conn.setAutoCommit(false);
-			String sql="insert into members(userid, userpw,"
-					+ "username, job, hobby, info, gender, regdate)"
-					+ "values(?,?,?,?,?,?,?,sysdate) ";
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			
-			psmt.setString(1, dto.getUserid());
-			psmt.setString(2, dto.getUserpw());
-			psmt.setString(3, dto.getUsername());
-			psmt.setString(4, dto.getJob());
-			psmt.setString(5, dto.getHobby());
-			psmt.setString(6, dto.getInfo());
-			psmt.setString(7, dto.getGender());
-			//psmt.setString(8, dto.getRegdate());
-			
-			r=psmt.executeUpdate();
+			//2. sql구문 준비(삽입)
+			String sql = "insert into member (userid, userpw, username, "
+					+ "gender, regdate) values (?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql);
+			//3. 실행
+			pstmt.setString(1, dto.getUserid());
+			pstmt.setString(2, dto.getUserpw());
+			pstmt.setString(3, dto.getUserpw());
+			pstmt.setString(4, dto.getGender());
+			pstmt.setDate(5, dto.getRegdate());;
+			r = pstmt.executeUpdate();
 			conn.commit();
-			System.out.println(r+"건이 등록됨");
-		}catch (Exception e) {
+			//4. 결과처리
+			System.out.println(r + " 건이 등록됨");
+		}catch (SQLException e) {
+			System.out.println("등록실패");
 			e.printStackTrace();
-			try{
+			try {
 				conn.rollback();
-			}catch (SQLException e1) {
-				// TODO: handle exception
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
 		}finally {
+			//5. 연결해제
 			ConnectionManager.close(conn);
-			return r;
 		}
-		
+		return r;
 	}
 	//수정
 	public int update(MemberDTO dto) {
-		int r=0;
-		try {
-			conn=ConnectionManager.getConnnect();
-			conn.setAutoCommit(false);
-			String sql="update members set "
-					+ "userid=?, userpw=?, username=?, "
-					+ "job=?, hobby=?, info=?, gender=?, regdate=?"
-					+ "where userid=?";
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			
-			psmt.setString(1, dto.getUserid());
-			psmt.setString(2, dto.getUserpw());
-			psmt.setString(3, dto.getUsername());
-			psmt.setString(4, dto.getJob());
-			psmt.setString(5, dto.getHobby());
-			psmt.setString(6, dto.getInfo());
-			psmt.setString(7, dto.getGender());
-			psmt.setString(8, dto.getRegdate());
-			
-			r=psmt.executeUpdate();
-			conn.commit();
-			System.out.println(r+"건이 등록됨");
-		}catch (Exception e) {
-			e.printStackTrace();
-			try{
-				conn.rollback();
-			}catch (SQLException e1) {
-				// TODO: handle exception
-			}
-		}finally {
-			ConnectionManager.close(conn);
-			return r;
-		}
+		int r = 0;
 		
+		try {
+			//1. DB연결
+			conn = ConnectionManager.getConnnect();
+			//2. sql구문 준비(수정)
+			String sql = "update member set job = ?, hobby = ?, "
+					+ "info = ? where userid = ?";
+			pstmt = conn.prepareStatement(sql);
+			//3. 실행
+			pstmt.setString(1, dto.getJob());
+			pstmt.setString(2, dto.getHobby());
+			pstmt.setString(3, dto.getInfo());
+			pstmt.setString(4, dto.getUserid());
+			r = pstmt.executeUpdate();
+			//4. 결과처리
+			System.out.println(r + " 건이 수정됨");
+		}catch (SQLException e) {
+			System.out.println("등록실패");
+			e.printStackTrace();
+		}finally {
+			//5. 연결해제
+			ConnectionManager.close(conn);
+		}
+		return r;
 	}
 	//삭제
 	public int delete(MemberDTO dto) {
-		int r=0;
-		try {
-			conn=ConnectionManager.getConnnect();
-			conn.setAutoCommit(false);
-			String sql="delete members where userid=? ";
-			PreparedStatement psmt = conn.prepareStatement(sql);
-			
-			psmt.setString(1, dto.getUserid());
-			
-			r=psmt.executeUpdate();
-			conn.commit();
-			System.out.println(r+"건이 등록됨");
-		}catch (Exception e) {
-			e.printStackTrace();
-			try{
-				conn.rollback();
-			}catch (SQLException e1) {
-				// TODO: handle exception
-			}
-		}finally {
-			ConnectionManager.close(conn);
-			return r;
-		}
+		int r = 0;
 		
+		try {
+			//1. DB연결
+			conn = ConnectionManager.getConnnect();
+			//2. sql구문 준비(삭제)
+			String sql = "delete member where userid = ?";
+			pstmt = conn.prepareStatement(sql);
+			//3. 실행
+			pstmt.setString(1, dto.getUserid());
+			r = pstmt.executeUpdate();
+			//4. 결과처리
+			System.out.println(r + " 건이 삭제됨");
+		}catch (SQLException e) {
+			System.out.println("등록실패");
+			e.printStackTrace();
+		}finally {
+			//5. 연결해제
+			ConnectionManager.close(conn);
+		}
+		return r;
 	}
 	//단건조회
 	public MemberDTO selectOne(MemberDTO dto) {
 		MemberDTO member = new MemberDTO();
 		try {
-			conn=ConnectionManager.getConnnect();
-			String sql="select * from members where userid=? ";
-			psmt=conn.prepareStatement(sql);
-			psmt.setString(1, dto.getUserid());
-			rs=psmt.executeQuery();
+			conn = ConnectionManager.getConnnect();
+			String sql = "select * from member where userid = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getUserid());
+			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				member.setUserid(rs.getString("userid"));
 				member.setUserpw(rs.getString("userpw"));
@@ -138,25 +128,26 @@ public class MemberDAO {
 				member.setHobby(rs.getString("hobby"));
 				member.setInfo(rs.getString("info"));
 				member.setGender(rs.getString("gender"));
-				member.setRegdate(rs.getString("regdate"));
+				member.setRegdate(rs.getDate("regdate"));
 			}
-			
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			ConnectionManager.close(rs,psmt,conn);
+			//연결해제
+			ConnectionManager.close(conn);
 		}
-		return member;		
-	}		
-	
-	//전체 조회
-	public List<MemberDTO> selectAll(){
+		return member;
+	}
+
+	// 전체조회
+	public List<MemberDTO> selectAll() {
 		List<MemberDTO> datas = new ArrayList<MemberDTO>();
 		try {
-			String sql= "select * from members order by userid ";
-			psmt=conn.prepareStatement(sql);
-			rs=psmt.executeQuery();
-			while(rs.next()) {
+			conn = ConnectionManager.getConnnect();
+			String sql = "select * from member order by userid";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
 				MemberDTO member = new MemberDTO();
 				member.setUserid(rs.getString("userid"));
 				member.setUserpw(rs.getString("userpw"));
@@ -165,15 +156,15 @@ public class MemberDAO {
 				member.setHobby(rs.getString("hobby"));
 				member.setInfo(rs.getString("info"));
 				member.setGender(rs.getString("gender"));
-				member.setRegdate(rs.getString("regdate"));
-				datas.add(member);
+				member.setRegdate(rs.getDate("regdate"));
+				datas.add(member); // dto를 리스트에 추가
 			}
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
+			// 연결해제
 			ConnectionManager.close(conn);
-		}		
+		}
 		return datas;
-	}	
-	
+	}
 }
