@@ -52,6 +52,7 @@ public class ListTest {
 		for(EmpDTO emp : empList) {
 			System.out.println(emp);
 		}
+		Collections.shuffle(empList); //섞기
 		//확장for문 이용해서 이름만 출력
 		System.out.println("empList에 들어있는 이름만 출력");
 		for(EmpDTO emp : empList) {
