@@ -2,6 +2,8 @@ package com.edu.java;
 
 import java.util.*;
 
+import com.edu.emp.EmpDTO;
+
 public class ListTest {
 
 	public static void main(String[] args) {
@@ -36,6 +38,28 @@ public class ListTest {
 			String temp = iter.next();
 			System.out.println(temp);			
 		}
+		
+		//EmpDTO List
+		List<EmpDTO> empList = new ArrayList<EmpDTO>();
+		empList.add(new EmpDTO("100", "홍길동", "2000"));
+		empList.add(new EmpDTO("101", "김유신", "3000"));
+		empList.add(new EmpDTO("102", "유관순", "1000"));
+		
+		//확장for문 이용해서 이름만 출력
+		System.out.println("empList에 들어있는 이름만 출력");
+		for(EmpDTO emp : empList) {
+			System.out.println(emp.getFirst_name());
+		}
+		
+		//iterator 이용해서 급여만 출력, 전체급여 계산
+		int sum = 0;
+		Iterator<EmpDTO> empIter = empList.iterator();
+		System.out.println("empIter에 들어있는 급여만 출력");
+		while(empIter.hasNext()) {
+			String salary = empIter.next().getSalary();
+			System.out.println(salary);
+			sum += Integer.parseInt(salary);
+		}
+		System.out.println("전체 급여 : " + sum);
 	}
-
 }
