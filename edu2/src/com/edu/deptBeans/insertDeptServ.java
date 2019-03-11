@@ -26,6 +26,7 @@ public class insertDeptServ extends HttpServlet {
 		//파라미터를 빈즈에 담고 (<jsp:useBean />, <jsp:setProperty />)
 		DeptBeans beans = new DeptBeans(); //빈즈 생성
 		try {
+			request.setCharacterEncoding("UTF-8"); //post방식일 때 한글 인코딩 설정
 			BeanUtils.copyProperties(beans, request.getParameterMap());
 		} catch (IllegalAccessException e) {
 			// TODO Auto-generated catch block

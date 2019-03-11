@@ -9,7 +9,7 @@
 <body>
 <%@include file="../main/header.jsp"%>
 <h4>부서등록</h4>
-<form action="<%=request.getContextPath()%>/insertDept">
+<form action="<%=request.getContextPath()%>/insertDept" method="post">
 	부서번호<input name="department_id"><br>
 	부서명<input name="department_name"><br>
 	지역<input name="location_id"><br>
