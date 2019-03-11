@@ -6,7 +6,7 @@ import java.io.Serializable;
  * DTO = VO = DO = Beans : 데이터를 저장하는 용도의 클래스
  * 단지 값을 저장하는 용도
  */
-public class EmpDTO implements Serializable {//직렬화 
+public class EmpDTO implements Serializable, Comparable<EmpDTO> {//직렬화 
 	 String employee_id;
 	 String first_name;
 	 String last_name;
@@ -134,5 +134,10 @@ public class EmpDTO implements Serializable {//직렬화
 				+ job_id + ", salary=" + salary + ", commission_pct=" + commission_pct + ", manager_id=" + manager_id
 				+ ", department_id=" + department_id + "]";
 	}
-	
+
+	@Override
+	public int compareTo(EmpDTO dto) {
+//		return this.first_name.compareTo(dto.first_name); //이름 순으로 정렬
+		return Integer.parseInt(this.salary) - Integer.parseInt(dto.salary);
+	}
 }

@@ -16,6 +16,7 @@ public class ListTest {
 		System.out.println(list);
 		//2. 삭제
 		list.remove("수박"); //list.remove(0)
+		//list.clear(); //모두삭제
 		System.out.println(list);
 		//3. 변경
 		list.set(0, "복숭아");
@@ -41,11 +42,16 @@ public class ListTest {
 		}
 		
 		//EmpDTO List
-		List<EmpDTO> empList = new LinkedList<EmpDTO>();
+		List<EmpDTO> empList = new ArrayList<EmpDTO>();
 		empList.add(new EmpDTO("100", "홍길동", "2000"));
 		empList.add(new EmpDTO("101", "김유신", "3000"));
 		empList.add(new EmpDTO("102", "유관순", "1000"));
-		
+		//정렬
+		Collections.sort(empList);
+		System.out.println("--------정렬후----------");
+		for(EmpDTO emp : empList) {
+			System.out.println(emp);
+		}
 		//확장for문 이용해서 이름만 출력
 		System.out.println("empList에 들어있는 이름만 출력");
 		for(EmpDTO emp : empList) {
