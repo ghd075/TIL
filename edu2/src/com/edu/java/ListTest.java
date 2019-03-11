@@ -20,6 +20,7 @@ public class ListTest {
 		//3. 변경
 		list.set(0, "복숭아");
 		//4. 조회
+		list.contains("복숭아"); //검색 용도로 사용
 		//첫번째 for문
 		System.out.println("for문 사용");
 		for(int i=0; i<list.size(); i++) {
@@ -40,7 +41,7 @@ public class ListTest {
 		}
 		
 		//EmpDTO List
-		List<EmpDTO> empList = new ArrayList<EmpDTO>();
+		List<EmpDTO> empList = new LinkedList<EmpDTO>();
 		empList.add(new EmpDTO("100", "홍길동", "2000"));
 		empList.add(new EmpDTO("101", "김유신", "3000"));
 		empList.add(new EmpDTO("102", "유관순", "1000"));
