@@ -14,7 +14,7 @@
 	session.setAttribute("sessionUsername", "김길동");
 	request.setAttribute("reqUsername", "박길동");
 	session.setAttribute("emp", new EmpDTO("100","사원김유신","2000"));
-
 %>
+<jsp:forward page="eltest.jsp"/>
 </body>
 </html>
