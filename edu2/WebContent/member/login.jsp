@@ -15,7 +15,7 @@
 		out.print(msg);
 	%>
 	<form action="<%=request.getContextPath()%>/loginoutServ" method="post">
-		id<input name="userid"><br> pw<input name="userpw"><br>
+		id : <input name="userid"><br> pw : <input name="userpw"><br>
 		<button>로그인</button>
 	</form>
 </body>

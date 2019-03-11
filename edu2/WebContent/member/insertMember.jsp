@@ -17,7 +17,6 @@
 	취미 : <input name="hobby"/><br>
 	자기 소개 : <input name="info"/><br>
 	성별 : <input name="gender"/><br>
-	가입일자 : <input type="date" name="regdate" /><br>
 	<button type="submit">등록</button>
 </form>
 <%@include file="../main/footer.jsp"%>

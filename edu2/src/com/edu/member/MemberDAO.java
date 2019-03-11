@@ -33,14 +33,13 @@ public class MemberDAO {
 			conn.setAutoCommit(false);
 			//2. sql구문 준비(삽입)
 			String sql = "insert into member (userid, userpw, username, "
-					+ "gender, regdate) values (?,?,?,?,?)";
+					+ "gender, regdate) values (?,?,?,?,sysdate)";
 			pstmt = conn.prepareStatement(sql);
 			//3. 실행
 			pstmt.setString(1, dto.getUserid());
 			pstmt.setString(2, dto.getUserpw());
 			pstmt.setString(3, dto.getUserpw());
 			pstmt.setString(4, dto.getGender());
-			pstmt.setDate(5, dto.getRegdate());;
 			r = pstmt.executeUpdate();
 			conn.commit();
 			//4. 결과처리
