@@ -11,6 +11,6 @@
 id : <%=request.getParameter("id") %> == ${param.id} == ${param["id"] } <!-- 이름있는 배열 -->
 <h4>헤더</h4>
 header <%=request.getHeader("User-Agent") %> == <font color="blue">${header["User-Agent"] }</font>
-${header}
+${header} <!-- 모든 헤더정보 보기 -->
 </body>
 </html>
