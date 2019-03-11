@@ -14,11 +14,22 @@ import org.apache.commons.beanutils.BeanUtils;
 /**
  * Servlet implementation class updateDeptServ
  */
-@WebServlet("/updateDept")
+@WebServlet("/dept/updateDept")
 public class updateDeptServ extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//단건조회
+		String department_id = request.getParameter("department_id");
+		DeptBeans beans = DeptDAO.getInstance().getDept(department_id);
+		request.setAttribute("beans", beans);
+		request.getRequestDispatcher("updateDept.jsp").forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		DeptBeans beans = new DeptBeans();
 		try {
@@ -31,15 +42,7 @@ public class updateDeptServ extends HttpServlet {
 			e.printStackTrace();
 		}
 		DeptDAO.getInstance().deptUpdate(beans);
-		response.sendRedirect("dept/selectDeptList.jsp");
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		response.sendRedirect("SelectDept");
 	}
 
 }
