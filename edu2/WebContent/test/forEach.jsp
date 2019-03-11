@@ -23,7 +23,7 @@
 	<tr><td>${s.index} ${s.count}</td>
 		<td>${bean.employee_id}</td>
 		<td>${bean.first_name}</td>  <%--if() --%>
-		<td><font color="${bean.salary>2000?"blue":"red"}">${bean.salary}</font></td></tr> <!-- =bean.getEmployee_id()  -->
+		<td><font color="${bean.salary>2000?"blue":"green"}">${bean.salary}</font></td></tr> <!-- =bean.getEmployee_id()  -->
 </c:forEach>
 </table>							<!-- } -->
 <c:forEach var="i" begin="0" end="9" step="2">  <%-- for(int i=0;i<10;i++ --%>
