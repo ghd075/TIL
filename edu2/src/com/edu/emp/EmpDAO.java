@@ -107,6 +107,37 @@ public class EmpDAO implements Serializable{
 		}
 		return r;
 	}
+	//부서별 급여합계 부서번호, 부서명, 급여합계 List<Map>
+	public List<Map<String,Object>> selectDeptSal(){
+		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+		
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "select a.department_id, department_name, sum(salary) salary, count(*) cnt, avg(salary) avg " + 
+					"from departments a, employees b " + 
+					"where a.department_id = b.department_id " + 
+					"group by a.department_id, department_name";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("department_id", rs.getString("department_id"));
+				map.put("department_name", rs.getString("department_name"));
+				map.put("salary", rs.getString("salary"));
+				map.put("cnt", rs.getString("cnt"));
+				map.put("avg", rs.getString("avg"));
+				list.add(map);
+			}
+		}catch (SQLException e) {
+			System.out.println("조회실패");
+			e.printStackTrace();
+		}finally {
+			ConnectionManager.close(conn);
+		}
+		
+		return list;
+	}
+	
 	//단건조회
 	public EmpDTO selectOne(EmpDTO dto) {
 		EmpDTO emp = new EmpDTO();

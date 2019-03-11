@@ -14,16 +14,15 @@ public class ConnectionManager {
 	public static Connection getConnnect() {
 		Connection conn = null;
 		try {
-			// driverManager 이용하여 연결
+			// driverManager 이용하여 연결(자바 콘솔용)
+			  String jdbc_url = "jdbc:oracle:thin:@localhost:1521:xe"; 
+			  conn = DriverManager.getConnection(jdbc_url, "hr", "hr");
+			// datasource를 이용하여 connection 획득(톰캣용)
 			/*
-			 * String jdbc_url = "jdbc:oracle:thin:@localhost:1521:xe"; conn =
-			 * DriverManager.getConnection(jdbc_url, "hr", "hr");
+			 * Context initContext = new InitialContext(); DataSource ds = (DataSource)
+			 * initContext.lookup("java:/comp/env/jdbc/oracle"); conn = ds.getConnection();
+			 * // conn 을 할당받음
 			 */
-			// datasource를 이용하여 connection 획득
-			Context initContext = new InitialContext();
-			DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/oracle");
-			conn = ds.getConnection(); // conn 을 할당받음
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
