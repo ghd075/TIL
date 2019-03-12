@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
 <c:set var="name" value="Amy" /> <%-- pageContext.setAttribute("name", "Amy"); %>과 동일--%>
 <c:out value="${name}" /><br>	<%-- out.print(name); %>과 동일--%>
 
