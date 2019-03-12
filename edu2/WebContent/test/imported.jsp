@@ -9,6 +9,7 @@
 <body>
 <table border="1">
 	<tr><th>인클루드</th></tr>
+	<tr><td><%=request.getParameter("username") %> ${param.username}</td></tr>
 </table>
 </body>
 </html>

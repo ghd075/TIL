@@ -8,7 +8,9 @@
 <title>import 태그 연습</title>
 </head>
 <body>
-<c:import url="imported.jsp" var="url"></c:import>
+<c:import url="imported.jsp" var="url">
+	<c:param name="username">을지문덕</c:param>
+</c:import>
 <h3>import 태그 연습</h3>
 <pre>
 <c:out value="${url}" escapeXml="false"></c:out>
