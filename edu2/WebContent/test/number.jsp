@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -16,5 +17,9 @@
 통화기호 붙여서 출력 : <fmt:formatNumber value="${salary}" type="currency" currencySymbol="$" /><br>
 소수점 자리 수 출력 : <fmt:formatNumber value="${salary}" minFractionDigits="2" maxFractionDigits="2" /><br>
 패턴 사용해서 출력 : <fmt:formatNumber value="${salary}" pattern="000,000.0" />
+
+<hr>
+<fmt:formatDate value="<%=new Date() %>"/><br>
+<fmt:formatDate value="<%=new Date() %>" type="time"/>
 </body>
 </html>
