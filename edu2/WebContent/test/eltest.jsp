@@ -26,18 +26,18 @@ beans : <%--=((EmpDTO)session.getAttribute("emp")).getFirst_name() --%> == ${emp
 <% ArrayList list1 = null; 
    ArrayList list2 = new ArrayList<String>();
    list2.add("바나나");
-   String name = "abc";
+   String name = "<font color='blue'>홍길동</font>";
    
    request.setAttribute("list1", list1);
    request.setAttribute("list2", list2);
-   //request.setAttribute("name", name);
+   request.setAttribute("name", name);
 %>
 null : ${ list1 == null } ${ list1 eq null } <br>
 empty : ${ empty list2 } == <%= list2== null || list2.size()==0 %>
 		${ empty name }	 ==	<%= name == null || name.length()==0 %> <br>
 <h4>out tag</h4>
 ${name} <br>
-<c:out value="${name}" escapeXml="false">
+<c:out value="${name}" escapeXml="true">
 	<font color="red">이름없음</font>
 </c:out>
 </body>
