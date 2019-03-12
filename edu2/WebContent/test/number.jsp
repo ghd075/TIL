@@ -19,7 +19,8 @@
 패턴 사용해서 출력(음수 값 확인) : <fmt:formatNumber value="${salary}" pattern="000,000.0;(000,000.0)" />
 
 <hr>
-<c:set var="today" value="<%=new Date() %>"></c:set>
+<c:set var="today" value="2019/03/20 4:30:13"></c:set>
+<fmt:parseDate var="today" value="${today}" pattern="yyyy/MM/dd hh:mm"/>
 <fmt:formatDate value="${today}"/><br>
 <fmt:formatDate value="${today}" type="both"/><br>
 <fmt:formatDate value="${today}" pattern="yyyy/MM/dd hh:mm"/>
