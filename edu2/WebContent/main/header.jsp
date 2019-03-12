@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style>
 * {
   box-sizing: border-box;
@@ -66,13 +67,21 @@ footer {
 </style>
 <header>
   <h2>메뉴</h2>
+<c:choose>
+	<c:when test="${ empty sessionScope.userid }">
+		<%@include file="../member/login.jsp" %>
+	</c:when>
+	<c:otherwise>
+		<%=session.getAttribute("userid")%>님 <a href="<%=request.getContextPath()%>/loginoutServ">로그아웃</a>
+	</c:otherwise>
+</c:choose>
 <%
-	if(session.getAttribute("userid") == null) {
+	//if(session.getAttribute("userid") == null) {
 %>
-	<%@include file="../member/login.jsp" %>
-<% } else { %>
-	<%=session.getAttribute("userid")%>님 <a href="<%=request.getContextPath()%>/loginoutServ">로그아웃</a>
-<% } %>
+	<%--@include file="../member/login.jsp" --%>
+<% //} else { %>
+	<%--=session.getAttribute("userid")--%><%-- 님 --%> 
+<% //} %>
 </header>
 <section>
   <nav>
