@@ -12,7 +12,7 @@
 <my:selectJotbs/>
 <my:time>현재 날짜는</my:time><br>
 <my:sum num1="10" num2="20"/>
-<my:chart color="red" title="서 적">
+<my:chart color="red" title="서 적" w="300">
 	소 셜<br>
 	역 사<br>
 	인 문<br>
