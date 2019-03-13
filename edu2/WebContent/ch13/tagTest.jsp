@@ -22,5 +22,7 @@
 	배 구<br>
 	농 구<br>
 </my:chart>
+지역 : <my:select location="area" seoul="서울" daejun="대전" busan="부산" />
+취미 : <my:select location="hobby" ski="스키" read="독서" trip="여행" />
 </body>
 </html>
