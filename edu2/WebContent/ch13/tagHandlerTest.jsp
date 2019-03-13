@@ -10,6 +10,6 @@
 </head>
 <body>
 <my:first color="red"></my:first>
-<my2:second>hello~~~</my2:second>
+<my2:second color="yellow">hello~~~</my2:second>
 </body>
 </html>

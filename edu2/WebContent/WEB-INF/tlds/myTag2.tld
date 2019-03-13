@@ -7,5 +7,9 @@
   	<name>second</name>
   	<tag-class>com.edu.customTag.MyCustomTag2</tag-class>
   	<body-content>scriptless</body-content>
+  	<attribute>
+  		<name>color</name>
+    	<required>true</required>
+  	</attribute>
   </tag>
 </taglib>

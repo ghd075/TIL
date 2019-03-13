@@ -9,7 +9,14 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 public class MyCustomTag2 extends SimpleTagSupport {
-
+	
+	private String color;
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
 	@Override
 	public void doTag() throws JspException, IOException {
 		JspContext context = this.getJspContext();
@@ -18,7 +25,7 @@ public class MyCustomTag2 extends SimpleTagSupport {
 		this.getJspBody().invoke(sw);
 		String body = sw.toString();
 		
-		out.print("<table border='1'><tr><td>" + body);
+		out.print("<table border='1'><tr><td bgcolor='"+ color +"'>" + body);
 		out.print("</td></tr></table>");
 		/*
 		 * System.out.println("커스텀 태그의 바디가 실행되기 전"); this.getJspBody().invoke(null);
