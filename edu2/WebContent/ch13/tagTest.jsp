@@ -10,7 +10,7 @@
 <body>
 <my:selectDept/>
 <my:selectJotbs/>
-<my:time/><br>
+<my:time>현재 날짜는</my:time><br>
 <my:sum num1="10" num2="20"/>
 </body>
 </html>
