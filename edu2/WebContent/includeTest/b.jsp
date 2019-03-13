@@ -11,6 +11,10 @@
 B page <hr>
 <%-- <% String name = request.getParameter("name");
    out.print(URLDecoder.decode(name, "utf-8"));%> --%>
-<%=request.getParameter("name") %>
+<%-- <%=request.getParameter("name") %> --%>
+<%
+	String name = request.getParameter("name");
+	out.print("pw : " + request.getParameter("pw"));
+%>
 </body>
 </html>

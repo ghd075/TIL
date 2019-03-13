@@ -15,7 +15,8 @@ A page <hr>
 <c:url value="b.jsp" var="url">
 	<c:param name="name"><%=name%></c:param>
 </c:url>
-<jsp:include page="${url}"/>
+<%-- <jsp:include page="${url}"/> --%>
+<jsp:forward page="b.jsp" />
 <%-- <jsp:include page="b.jsp">
 	<jsp:param value="<%=URLEncoder.encode(name, \"utf-8\") %>" name="name"/>
 </jsp:include> --%>
