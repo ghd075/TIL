@@ -15,8 +15,15 @@
 	</tr>
 	<c:forEach items="${list}" var="dept">
 		<tr>
-			<td>${dept.department_id}</td> <td>${dept.department_name}</td> 
-			<td>${dept.location_id}</td> <td>${dept.manager_id}</td>	
+			<td>
+				<c:url value="/updateDeptForm.do" var="url">
+					<c:param name="department_id">${dept.department_id}</c:param>
+				</c:url>
+				<a href="${url}">${dept.department_id}</a>
+			</td> 
+			<td>${dept.department_name}</td> 
+			<td>${dept.location_id}</td> 
+			<td>${dept.manager_id}</td>	
 		</tr>
 	</c:forEach>
 </table>

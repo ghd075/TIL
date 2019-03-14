@@ -111,7 +111,7 @@ public class DeptDAO {
 		try {
 			conn = ConnectionManager.getConnnect();
 			String sql ="SELECT department_id, department_name, manager_id, location_id "
-					+   "  FROM departments"
+					+   "  FROM hr.departments"
 					+   " WHERE department_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, department_id);
@@ -170,7 +170,7 @@ public class DeptDAO {
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
 		try {
 			conn = ConnectionManager.getConnnect();			
-			String sql = "select * from departments";
+			String sql = "select * from hr.departments";
 			Statement stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);			
 			while(rs.next()) {
@@ -206,7 +206,7 @@ public class DeptDAO {
 			conn = ConnectionManager.getConnnect();			
 			String sql = "select b.*  from( select a.*, rownum rn  from ( "
 			        +   "SELECT department_id, department_name, manager_id, location_id "
-					+   "  FROM departments"
+					+   "  FROM hr.departments"
 			        +   whereCondition					
 					+   " ORDER BY department_id "
 					+   " ) a   ) b  where rn between ? and ?	";
@@ -250,7 +250,7 @@ public class DeptDAO {
 				whereCondition += " and manager_id = ? ";
 			}
 			
-			String sql = "select count(*) from departments" + whereCondition;
+			String sql = "select count(*) from hr.departments" + whereCondition;
 			pstmt = conn.prepareStatement(sql);
 
 			// 조건값 셋팅

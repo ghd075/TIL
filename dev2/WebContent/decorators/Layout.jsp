@@ -87,7 +87,7 @@ footer {
 	 <li><a href="memberUpdate.jsp">회원 정보 수정</a></li>
 	 <li><a href="memberDelete.jsp">회원 정보 삭제</a></li>
 	 <li><a href="memberList.do">모든 회원 정보 보기</a></li>
-	 <li><a href="deptlist.do">모든 부서 정보 보기</a></li>
+	 <li><a href="deptList.do">모든 부서 정보 보기</a></li>
     </ul>
   </nav>
   

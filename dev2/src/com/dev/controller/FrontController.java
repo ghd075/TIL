@@ -18,6 +18,7 @@ public class FrontController extends HttpServlet {
 		charset = sc.getInitParameter("charset");
 		
 		//필요한 컨트롤러들을 리스트에 담아두기
+		//('사용자가 정한 이름.do', new 해당 컨트롤러);
 		list = new HashMap<String, Controller>();
 		list.put("/memberInsert.do", new MemberInsertController());
 		list.put("/memberSearch.do", new MemberSearchController());
@@ -26,6 +27,9 @@ public class FrontController extends HttpServlet {
 		list.put("/memberList.do", new MemberListController());
 		list.put("/deptList.do", new DeptListController());
 		list.put("/insertDept.do", new DeptInsertController());
+		list.put("/updateDeptForm.do", new DeptUpdateFormController());
+		list.put("/deleteDept.do", new DeptDeleteController());
+		list.put("/updateDept.do", new DeptUpdateController());
 
 	}
 

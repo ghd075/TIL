@@ -25,4 +25,18 @@ public class DeptService {
 	public void deptInsert(DeptBeans vo) {
 		dao.deptInsert(vo);
 	}
+	
+	//단건조회
+	public DeptBeans getDept(String department_id) {
+		return dao.getDept(department_id);
+	}
+	//수정처리
+	public void deptUpdate(DeptBeans vo) {
+		dao.deptUpdate(vo);
+	}
+	
+	//삭제
+	public void deptDelete(String department_id) {
+		dao.deptDelete(department_id);
+	}
 }
