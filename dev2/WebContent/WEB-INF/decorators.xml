@@ -6,6 +6,7 @@
 	<!-- 한개의 decorator는 0개 이상의 pattern을 가질 수 있음 -->
 	<decorator name="basic-theme" page="Layout.jsp">
 		<pattern>/result/*</pattern>
+		<pattern>/dept/*</pattern>
 		<pattern>/*</pattern>
 	</decorator>
 	<decorator name="admin-theme" page="adminLayout.jsp">

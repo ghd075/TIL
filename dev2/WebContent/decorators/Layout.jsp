@@ -81,11 +81,13 @@ footer {
 <section>
   <nav>
     <ul>
+     <li><a href="/dev/dept/insertDept.jsp">부서 정보 생성</a></li>
      <li><a href="memberInsert.jsp">회원 정보 생성</a></li>
 	 <li><a href="memberSearch.jsp">회원 정보 검색</a></li>
 	 <li><a href="memberUpdate.jsp">회원 정보 수정</a></li>
 	 <li><a href="memberDelete.jsp">회원 정보 삭제</a></li>
 	 <li><a href="memberList.do">모든 회원 정보 보기</a></li>
+	 <li><a href="deptlist.do">모든 부서 정보 보기</a></li>
     </ul>
   </nav>
   
