@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- decorators : 데코레이더 JSP파일이 위치할 경로 -->
+<decorators defaultdir="/decorators">
+	<!-- page: 레이아웃이 들어있는 파일 -->
+	<!-- pattern: 적용될 경로 -->
+	<!-- 한개의 decorator는 0개 이상의 pattern을 가질 수 있음 -->
+	<decorator name="basic-theme" page="Layout.jsp">
+		<pattern>/result/*</pattern>
+		<pattern>/*</pattern>
+	</decorator>
+	<decorator name="admin-theme" page="adminLayout.jsp">
+		<pattern>/admin/*</pattern>
+	</decorator>
+</decorators>
