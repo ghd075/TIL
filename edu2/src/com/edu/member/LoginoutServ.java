@@ -40,7 +40,7 @@ public class LoginoutServ extends HttpServlet {
 			// idSave 파라미터값이 NULL이 아니고 'y'라면 userid 파라미터값을 쿠키에 저장
 			String idSave = request.getParameter("idSave");
 			if((idSave!=null) && (idSave.equals("y"))) {
-				Cookie c1 = CookieBox.createCookie("idSave", id,"/",60*60);
+				Cookie c1 = CookieBox.createCookie("userid", id,"/",60*60);
 				response.addCookie(c1);
 			}
 			HttpSession session = request.getSession(); //클라이언트로부터 세션정보를 가져온다.
