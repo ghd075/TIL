@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.edu.common.CookieBox;
+
 /**
  * 쿠키 저장
  */
@@ -35,6 +37,9 @@ public class CookieTestServlet extends HttpServlet {
 		c3.setMaxAge(60*60*24*10); //쿠키 만료시간을 현재로부터 10일
 		c3.setPath("/");
 		response.addCookie(c3);
+		
+		Cookie c4 = CookieBox.createCookie("time", "월4", "/", 60*60);
+		response.addCookie(c4);
 		
 		out.print("쿠키전송완료");
 		out.close();

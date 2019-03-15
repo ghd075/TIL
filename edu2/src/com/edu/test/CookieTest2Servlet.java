@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.edu.common.CookieBox;
+
 /**
  * 쿠키 추출
  */
@@ -27,6 +29,9 @@ public class CookieTest2Servlet extends HttpServlet {
 				out.print(list[i].getValue() + "<br>");
 			}
 		}
+		
+		CookieBox cb = new CookieBox(request);
+		out.print("time" + ":" + cb.getValue("time"));
 		out.close();
 	}
 
