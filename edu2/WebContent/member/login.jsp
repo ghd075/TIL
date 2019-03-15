@@ -15,8 +15,10 @@
 		out.print(msg);
 	%>
 	<form action="<%=request.getContextPath()%>/loginoutServ" method="post">
-		id : <input name="userid"><br> pw : <input name="userpw"><br>
+		id : <input name="userid" value="${cookie.userid.value}"/><br> 
+		pw : <input name="userpw"/><br>
 		<button>로그인</button>
+		<input type="checkbox" name="idSave" value="y"/>아이디저장
 	</form>
 </body>
 </html>
