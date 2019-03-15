@@ -14,7 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet Filter implementation class FlowFiterOne
  */ 
-//@WebFilter("/*") //"/"은 모든 servlet을 시작할 때 필터를 적용한다는 뜻
+//@WebFilter(urlPatterns= {"/member/*"}, servletNames="SelectDeptListServ", filterName="flow3")
+//urlPatterns으로 지정할 수 있고 이것만 있으면 생략이 가능함("/member/*)
+//servletNames으로 지정할 수 있다.(해당 하는 서블릿 이름명으로 지정해주면 됨)
+//"/"은 모든 servlet을 시작할 때 필터를 적용한다는 뜻
+//filterName은 등록하려고 하는 필터의 이름을 지정할 수 있다.
 public class FlowFiterOne implements Filter {
 	/**
 	 * @see Filter#destroy()
