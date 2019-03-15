@@ -11,8 +11,8 @@ import javax.servlet.annotation.WebFilter;
 
 /**
  * Servlet Filter implementation class FlowFiterOne
- */
-@WebFilter("/*") //"/"은 모든 servlet을 시작할 때 필터를 적용한다는 뜻
+ */   
+//@WebFilter("/*") //"/"은 모든 servlet을 시작할 때 필터를 적용한다는 뜻
 public class FlowFiterOne implements Filter {
 	/**
 	 * @see Filter#destroy()
