@@ -8,10 +8,12 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet Filter implementation class FlowFiterOne
- */   
+ */ 
 //@WebFilter("/*") //"/"은 모든 servlet을 시작할 때 필터를 적용한다는 뜻
 public class FlowFiterOne implements Filter {
 	/**

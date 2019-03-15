@@ -89,7 +89,7 @@ footer {
       <li><a href="../main/main.jsp">메인</a></li>
       <li><a href="../member/selectMemberList.jsp">회원관리</a></li>
       <li><a href="../emp/selectEmpList.jsp">사원관리</a></li>
-      <li><a href="../dept/selectDeptList.jsp">부서관리</a></li>
+      <li><a href="../dept/SelectDept">부서관리</a></li>
       <li><a href="../board/selectBoardList.jsp">게시판관리</a></li>
     </ul>
   </nav>
