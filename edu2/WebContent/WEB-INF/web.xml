@@ -37,11 +37,11 @@
     <url-pattern>/deptinert</url-pattern>
   </servlet-mapping>
   <error-page>
-  	<error-code>500</error-code>
-  	<location>/test/error500.jsp</location>
+    <error-code>500</error-code>
+    <location>/test/error500.jsp</location>
   </error-page>
   <error-page>
-  	<exception-type>java.lang.NullPointerException</exception-type>
-  	<location>/test/nullerror.jsp</location>
+    <exception-type>java.lang.NullPointerException</exception-type>
+    <location>/errorHandle</location>
   </error-page>
 </web-app>
