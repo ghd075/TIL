@@ -13,24 +13,8 @@
     <param-name>encoding</param-name>
     <param-value>utf-8</param-value>
   </context-param>
-<!--   <filter>
-    <filter-name>flow1</filter-name>
-    <filter-class>com.edu.test.FlowFiterOne</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>flow1</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-  <filter>
-    <filter-name>flow2</filter-name>
-    <filter-class>com.edu.test.FlowFiterTwo</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>flow2</filter-name>
-    <url-pattern>/dept/*</url-pattern>
-  </filter-mapping> -->
   <listener>
-  	<listener-class>com.edu.test.TestRequestListener</listener-class>
+    <listener-class>com.edu.test.TestRequestListener</listener-class>
   </listener>
   <servlet>
     <servlet-name>insertDept</servlet-name>
