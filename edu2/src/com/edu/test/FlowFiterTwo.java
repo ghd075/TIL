@@ -24,6 +24,16 @@ public class FlowFiterTwo implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		System.out.println("doFilter() 호출 전 ...........two");
+		//로그인, 회원가입
+		String uri = ((HttpServletRequest)request).getRequestURI();
+		if(!(uri.indexOf("login")>=0) && !(uri.indexOf("insertMember") >= 0)) {
+			
+			if(true) {
+				
+			}else {
+				chain.doFilter(request, response); // 서블릿
+			}
+		}
 		// 로그인 여부 체크
 		// HttpServle로 업캐스팅해줘야 세션에 저장된 userid 속성을 읽어서 NULL값이면
 		if (((HttpServletRequest) request).getSession().getAttribute("userid") == null) {
