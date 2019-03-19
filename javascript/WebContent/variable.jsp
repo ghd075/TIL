@@ -6,8 +6,16 @@
 <meta charset="UTF-8">
 <title>variable.jsp</title>
 <script type="text/javascript">
+"use strict";
 function getName() {
-	name = '김길동'; //함수 안에서 var생략하면 전역변수로 인식
+	const x = 10; //상수선언, 변경불가
+	x = 5;s
+	{
+	var name = '김길동'; //함수 안에서 var생략하면 전역변수로 인식
+	//var x = 2; //function 기반
+	let x = 2; //block 기반
+	}
+	console.log(x);
 }
 function getName2() {
 	console.log(name);
