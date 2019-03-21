@@ -5,8 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>window.jsp</title>
+<script src="js/cookie.js">
+</script>
 <script>
 var newWin;
+//실행시 초기화
+function init() {
+	var popup = getCookie("popup");
+	if(popup != 'N'){
+		window.open("popup.jsp","naver","width=100, height=200,left=600,top=500");		
+	}
+}
+
 //윈도우 창 닫기
 function win_close() {
 	newWin.close();	
@@ -18,7 +28,8 @@ function win_open() {
 }
 </script>
 </head>
-<body>
+<body onload="init()">
+<input type="text" id="addr" />
 <button type="button" onclick="win_open()">새창열기</button>
 <button type="button" onclick="win_close()">창닫기</button>
 </body>
