@@ -9,7 +9,8 @@
 <script>
 function changePopup(obj) {
 	if(obj.checked == true){
-		setCookie("popup", "N", 1);
+		//setCookie("popup", "N", 1); //쿠키에 저장
+		sessionStorage.setItem("popup","N"); //세션에 저장
 	}
 }
 </script>

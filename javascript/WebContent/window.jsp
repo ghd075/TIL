@@ -11,7 +11,8 @@
 var newWin;
 //실행시 초기화
 function init() {
-	var popup = getCookie("popup");
+	//var popup = getCookie("popup"); //쿠키에 저장
+	var popup = sessionStorage.getItem("popup"); //세션에 저장
 	if(popup != 'N'){
 		window.open("popup.jsp","naver","width=100, height=200,left=600,top=500");		
 	}
