@@ -25,6 +25,12 @@
   	}
   	//함수호출
   	myfunc2();
+  	
+  	//즉시 함수 실행(함수정의와 실행을 동시에)
+  	(function(){
+  		count++;
+  		document.write("즉시실행"+count+"<br>");
+  	}());
 </script>
 </head>
 <body>
