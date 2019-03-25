@@ -8,6 +8,7 @@
 <script>
 //var arr = ['사과','배','포도'];
 //arr.push('딸기');
+document.title = "title 변경"
 function addSel() {
 	var txt = document.getElementById("in").value;
     var parent = document.getElementById("Left");
