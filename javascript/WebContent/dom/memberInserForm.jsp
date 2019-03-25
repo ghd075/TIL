@@ -60,13 +60,26 @@ function check(){
 	}
 	return true; //폼을 전송
 }
+//중복체크(ajax)
+function dupChek(){
+	var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("demo").innerHTML = this.responseText;
+            }
+		};
+	var param = "?name=" + frm.username.value;
+    xhttp.open("GET", "../server/nameDupChek.jsp"+param, true);
+    xhttp.send();
+}
 </script>
 </head>
 <body>
 <!-- memberInserForm.jsp -->
 <form name="frm" onsubmit="return check()">
 	이름 :
-		<input type="text" name="username" id="username"/><br>
+		<input type="text" name="username" id="username" onkeyup="dupChek()"/>
+		<span id="demo"></span><br>
 	패스워드 :
 		<input type="password" name="userpass"/><br>
 	관심항목:
