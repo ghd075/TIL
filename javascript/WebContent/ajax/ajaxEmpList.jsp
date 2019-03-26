@@ -13,7 +13,15 @@ function loadEmp(){
     //2.콜백함수
     xhttp.onreadystatechange = function(){
         if(xhttp.readyState == 4 && xhttp.status == 200){
-            document.getElementById("demo").innerHTML += xhttp.responseText+"<hr>";
+        	//dom
+        	  var list = JSON.parse(xhttp.responseText);
+              var html = "";
+              for(i=0; i<list.length;i++){
+                  html += "<span>" + list[i].first_name + "</span>";
+                  html += "<span>" + list[i].last_name + "</span><br>";
+                  document.getElementById("demo").innerHTML += html;
+              }
+            //document.getElementById("demo").innerHTML += xhttp.responseText+"<hr>";
         }
     }
     //3.서버요청준비
