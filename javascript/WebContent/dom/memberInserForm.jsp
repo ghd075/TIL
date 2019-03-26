@@ -62,15 +62,29 @@ function check(){
 }
 //중복체크(ajax)
 function dupChek(){
+	//1. xhr 객체 생성
 	var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("demo").innerHTML = this.responseText;
-            }
+	//2.콜백함수(이벤트 핸들러)
+	xhttp.onreadystatechange = function() { //서버에서 응답이 오면 해당 함수를 실행
+		if (this.readyState == 4) { //4 -> 응답완료
+			if(this.status == 200){ //200 -> 정상실행
+				document.getElementById("demo").innerHTML = this.responseText; //dom
+				} else {
+					document.getElementById("demo").innerHTML = "에러" + this.status;
+				}
+				//로딩중 이미지를 제거
+			}else{
+				//document.getElementById("demo").innerHTML ="처리중"; //로딩중 이미지를 보이게
+			}
 		};
-	var param = "?name=" + frm.username.value;
-    xhttp.open("GET", "../server/nameDupChek.jsp"+param, true);
-    xhttp.send();
+	var param = "name=" + frm.username.value;
+    //xhttp.open("GET", "../server/nameDupChek.jsp"+param, true); //비동기(get)
+    xhttp.open("POST", "../server/nameDupChek.jsp", true); //비동기(POST);
+    xhttp.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    //xhttp.open("GET", "../server/nameDupChek.jsp"+param, false); //false는 동기식 처리
+    xhttp.send(); //동기식(false) 키보드입력처럼 블록킹 함수로 처리 완료되어야 다음 라인 실행
+    xhttp.send(param); //값 전달
+    //console.log("동기식 전송 테스트");
 }
 </script>
 </head>
