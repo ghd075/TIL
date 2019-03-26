@@ -1,3 +1,4 @@
+<%@page import="net.sf.json.JSONArray"%>
 <%@page import="emp.EmpDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="emp.EmpDAO"%>
@@ -6,7 +7,7 @@
 <%
 //ajax요청을 처리할 서버 프로그램
 List<EmpDTO> list = EmpDAO.getInstance().selectPage(1, 5);
-out.print("[");
+/* out.print("[");
 for(int i=0; i < list.size(); i++){
 	EmpDTO emp = list.get(i);
 	out.print("{");
@@ -16,6 +17,7 @@ for(int i=0; i < list.size(); i++){
 	if(i<list.size()-1){
 		out.print(",");
 	}
-}
-out.print("]");
+} 
+out.print("]") ; */
 %>
+<%=JSONArray.fromObject(list)%>
