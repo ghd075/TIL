@@ -23,7 +23,10 @@ function init(){
     //자식태그를 클릭시 자식태그과 연결된 이벤트를 실행하고 부모태그를 찾아가서 관련 부모태그과 연결된 이벤트도 실행함
     grand.addEventListener("click",function(){alert("grand click!");})
     parent.addEventListener("click",function(){alert("parent click!");})
-    child.addEventListener("click",function(){alert("child click!");})
+    child.addEventListener("click",function(){
+    							alert("child click!");
+                                event.stopPropagation(); //현재 이벤트가 상위로 전파되지 않도록 중단
+                            })
 }
 
 window.addEventListener("load",init);
