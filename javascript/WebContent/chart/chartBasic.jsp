@@ -16,7 +16,6 @@
 
 	// Set a callback to run when the Google Visualization API is loaded.
 	google.charts.setOnLoadCallback(drawChart);
-
 	// Callback that creates and populates a data table,
 	// instantiates the pie chart, passes in the data and
 	// draws it.
@@ -28,21 +27,32 @@
 		data.addColumn('number', '과장');
 		data.addColumn('number', '사원');
 		data.addRows([ 
-			[ '총무', 2, 10 ], [ '인사', 5, 20 ], [ '개발', 10, 30 ]
+			[ '총무', 2000, 10000 ], [ '인사', 5000, 20000 ], [ '개발', 10000, 30000 ]
 		]);
 
 		// 차트 환경 설정
 		var options = {
-			'title' : '부서별 사원수',
-			'width' : 800,
-			'height' : 500,
-			colors: ['black', 'blue' ], //색 지정
-			is3D: true //3d효과
+			'title' : '부서별 사원수', //차트제목
+			'width' : 800, //높이
+			'height' : 500, //너비
+			colors: ['yellow', 'blue' ], //색 지정
+			is3D: true, //3d효과
+			legend: 'none', //범레 끄기
+	        bar: {groupWidth: '95%'}, //막대 그래프 크기
+			vAxis: { gridlines: { count: 4 } } //세로막대 그리드라인 생성
+			//count - 그리드라인 수 지정
+			//hAxis: { gridlines: { count : 3 }, format: 'currency'} //가로막대 그리드라인 생성
+			//format: 'currency' - 통화단위 붙여서 출력
+			//format: 'decimal' - 소수점까지 출력
 		};
 
 		// Instantiate and draw our chart, passing in some options.
-		var chart = new google.visualization.PieChart(document
-				.getElementById('chart_div')); //원형차트
+		/* var chart = new google.visualization.PieChart(document
+				.getElementById('chart_div')); //원형차트 */
+		/* var chart = new google.visualization.BarChart(document
+				.getElementById('chart_div')); //가로 막대 차트 */
+		var chart = new google.visualization.ColumnChart(document
+				.getElementById('chart_div')); //세로 막대 차트
 		chart.draw(data, options);
 	}
 </script>
