@@ -255,4 +255,30 @@ public class EmpDAO implements Serializable {
 		}
 		return datas;
 	}
+	//부서별 사원 수 조회
+	public List<Map<String, Object>> selectDeptEmp() {
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+
+		try {
+			conn = ConnectionManager.getConnnect();
+			String sql = "select d.department_name, count(*) cnt " + 
+					"from employees e, departments d " + 
+					"where e.department_id = d.department_id " + 
+					"group by d.department_name";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("department_name", rs.getString("department_name"));
+				map.put("cnt", rs.getString("cnt"));
+				list.add(map);
+			}
+		} catch (SQLException e) {
+			System.out.println("조회실패");
+			e.printStackTrace();
+		} finally {
+			ConnectionManager.close(conn);
+		}
+		return list;
+	}
 }
