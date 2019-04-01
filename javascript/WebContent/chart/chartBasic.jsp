@@ -39,11 +39,17 @@
 			is3D: true, //3d효과
 			legend: 'none', //범레 끄기
 	        bar: {groupWidth: '95%'}, //막대 그래프 크기
-			vAxis: { gridlines: { count: 4 } } //세로막대 그리드라인 생성
+			vAxis: { gridlines: { count: 3 }, format: 'decimal', maxValue:100000 }, //세로막대 그리드라인 생성
 			//count - 그리드라인 수 지정
 			//hAxis: { gridlines: { count : 3 }, format: 'currency'} //가로막대 그리드라인 생성
 			//format: 'currency' - 통화단위 붙여서 출력
 			//format: 'decimal' - 소수점까지 출력
+			//maxValue : 최댓값 지정
+			 animation:{
+				"startup": true, //애니메이션 동작 여부 지정
+        		duration: 1000, //지속시간 지정
+        		easing: 'out' //속도를 조작하여 특별한 애니메이션 효과를 나타나게 하는 함수
+      		 }
 		};
 
 		// Instantiate and draw our chart, passing in some options.
@@ -54,6 +60,7 @@
 		var chart = new google.visualization.ColumnChart(document
 				.getElementById('chart_div')); //세로 막대 차트
 		chart.draw(data, options);
+		
 	}
 </script>
 </head>
