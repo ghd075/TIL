@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>chartEmp.jsp</title>
+<title>charSal.jsp</title>
 <!--Load the AJAX API-->
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
@@ -24,7 +24,7 @@
 		var data = new google.visualization.DataTable();
 		// 차트 환경 설정
 		var options = {
-			'title' : '부서별 사원수', //차트제목
+			'title' : '부서별 평균급여', //차트제목
 			'width' : 800, //가로px
 			'height' : 500, //세로px
 		};
@@ -34,19 +34,33 @@
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-            	data.addColumn('string', '부서'); //(타입, 이름)
-        		data.addColumn('number', '사원수');
+            	//(타입, 이름)
+        		data.addColumn('string', '부서명'); //첫번째 속성(속성타입, 항목)
+        		data.addColumn('number', '급여'); //두번째 속성(속성타입, 항목 값)
+        		data.addColumn('number', '부서별평균급여');
+        		data.addColumn({type:'string', role:'annotation'});
+        		//그래프 위에 주석 추가
+        		data.addColumn({type:'string', role:'tooltip'});
+        		//그래프 위에 풍선 도움말 내용을 바꿈
             	var list = JSON.parse(xhttp.responseText);
             	var arr = [];
             	for(i=0; i<list.length; i++){
-            		arr.push([ list[i].department_name, parseInt(list[i].cnt) ]);
+            		arr.push([ 
+            			list[i].department_name, 
+            			list[i].salary,
+            			list[i].avg,
+            			list[i].department_id,
+            			list[i].department_name + "\n급여: " + list[i].salary 
+            			+"\n평균급여: " + list[i].avg,            			
+            			]);
             		//받아오는 자료형와 타입이 일치해야 함
             	}
+            	//console.log(arr);
             	data.addRows(arr);
-            	chart.draw(data, options); //차트 그리기
+            	chart.draw(data, options);
             }
         };
-    	xhttp.open("GET", "../SelectDeptEmpServ", true);
+    	xhttp.open("GET", "../SelectDeptSalServ", true);
     	xhttp.send();		
 	}
 </script>

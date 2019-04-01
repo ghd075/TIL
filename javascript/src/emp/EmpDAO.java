@@ -125,9 +125,9 @@ public class EmpDAO implements Serializable {
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("department_id", rs.getString("department_id"));
 				map.put("department_name", rs.getString("department_name"));
-				map.put("salary", rs.getString("salary"));
-				map.put("cnt", rs.getString("cnt"));
-				map.put("avg", rs.getString("avg"));
+				map.put("salary", rs.getInt("salary"));
+				map.put("cnt", rs.getInt("cnt"));
+				map.put("avg", rs.getDouble("avg"));
 				list.add(map);
 			}
 		} catch (SQLException e) {

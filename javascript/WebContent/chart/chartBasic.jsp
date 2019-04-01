@@ -33,8 +33,8 @@
 		// 차트 환경 설정
 		var options = {
 			'title' : '부서별 사원수', //차트제목
-			'width' : 800, //높이
-			'height' : 500, //너비
+			'width' : 800, //가로px
+			'height' : 500, //세로px
 			colors: ['yellow', 'blue' ], //색 지정
 			is3D: true, //3d효과
 			legend: 'none', //범레 끄기
