@@ -36,12 +36,13 @@
 			'title' : '부서별 사원수',
 			'width' : 800,
 			'height' : 500,
-			colors: ['black', 'blue' ]
+			colors: ['black', 'blue' ], //색 지정
+			is3D: true //3d효과
 		};
 
 		// Instantiate and draw our chart, passing in some options.
-		var chart = new google.visualization.ColumnChart(document
-				.getElementById('chart_div'));
+		var chart = new google.visualization.PieChart(document
+				.getElementById('chart_div')); //원형차트
 		chart.draw(data, options);
 	}
 </script>
