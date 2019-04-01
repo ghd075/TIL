@@ -23,9 +23,9 @@
 
 		// 데이터 테이블 생성
 		var data = new google.visualization.DataTable();
-		data.addColumn('string', '부서');
-		data.addColumn('number', '과장');
-		data.addColumn('number', '사원');
+		data.addColumn('string', '부서'); //(타입, 이름)
+		data.addColumn('number', '과장'); 
+		data.addColumn('number', '사원'); 
 		data.addRows([ 
 			[ '총무', 2000, 10000 ], [ '인사', 5000, 20000 ], [ '개발', 10000, 30000 ]
 		]);
@@ -60,7 +60,12 @@
 		var chart = new google.visualization.ColumnChart(document
 				.getElementById('chart_div')); //세로 막대 차트
 		chart.draw(data, options);
-		
+		//이벤트 핸들러 addListener(이벤트 타켓, 이벤트 타입, 이벤트 핸들러)
+		google.visualization.events.addListener(chart,"select", selectChart);
+		//google.visualization.events.addListener(chart,"select", function(){ alert("차트 선택"); } ); //이벤트 핸들러 익명함수 사용
+	}
+	function selectChart() {
+		alert("차트 선택");
 	}
 </script>
 </head>
