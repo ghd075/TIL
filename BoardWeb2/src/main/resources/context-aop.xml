@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+<bean class="com.spirngbook.biz.common.Log4jAdvice" id="log4"/>
+<bean class="com.spirngbook.biz.common.LogAdvice" id="log"/>
+<bean class="com.spirngbook.biz.common.BeforeAdvice" id="beforeAdvice"/>
+<aop:config>
+	<!-- pointcut expression=(리턴타입(*모든) aop실행할 패키지..클래스.메소드의 매개변수를 지정해준다.)   -->
+	<aop:pointcut expression="execution(* com.spirngbook.biz..*Impl.*(..))" id="allPointcut"/>
+	<aop:pointcut expression="execution(* com.spirngbook.biz..*Impl.get*(..))" id="getPointcut"/>
+	 <!-- aspect pointcut의 위치에서 어느순간 실행이 될것인지를 지정해줌  aspectjweaver.jar 없으면 안 됨-->
+	<aop:aspect ref="beforeAdvice">
+		<!-- <aop:before method="beforeLog" pointcut-ref="getPointcut"/> -->
+		<aop:after method="beforeLog" pointcut-ref="getPointcut"/>
+	</aop:aspect>
+	<aop:aspect ref="log4">
+		<!-- before는 pointcut의 메소드가 실행되기 전에 발동 -->
+		<aop:before method="printLoggin" pointcut-ref="allPointcut"/>
+	</aop:aspect>
+</aop:config>
+
+</beans>
