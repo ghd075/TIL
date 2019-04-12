@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
-public class BoardServiceClient {
+public class BoardServiceClient2 {
 
 	public static void main(String[] args) {
 		//1. Spring 컨테이너를 구동한다.
@@ -16,7 +16,7 @@ public class BoardServiceClient {
 		
 		//3. 글 등록 기능 테스트
 		BoardVO vo = new BoardVO();
-		vo.setTitle("aop before 테스트");
+		vo.setTitle("aop around 테스트");
 		vo.setWriter("홍길동");
 		vo.setContent("임시 내용...");
 		service.insertBoard(vo);
