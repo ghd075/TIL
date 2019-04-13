@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="euc-kr" ?>
-<%@page import="util.DB"--%>
-<%@ page contentType = "text/xml; charset=euc-kr" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@page import="util.*"%>
 <%@ page import = "java.sql.*" %>
-<%@ page import = "java.util.List" %>
-<%-- µ¥ÀÌÅÍÁ¶È¸ --%>
+<%@ page import = "java.util.*" %>
+<%-- ë°ì´í„°ì¡°íšŒ --%>
 <%
 	request.setCharacterEncoding("utf-8");
 	int lastMsgId = Integer.parseInt(request.getParameter("lastMsgId"));
-	List messageList = new java.util.ArrayList();
+	List messageList = new ArrayList();
 	
 	Connection conn = null;
 	Statement stmt = null;
