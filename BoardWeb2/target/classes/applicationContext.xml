@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+<!-- 컴포넌트 스캔 설정 -->
+<context:component-scan base-package="com.spirngbook.biz"/>
+<context:component-scan base-package="polymorphism"/>
+<!-- 새로운 스프링 컨테이너 포함 -->
+<import resource="context-datasource.xml"/>
+<import resource="context-aop.xml"/>
+<!-- bean 생성(해당 클래스가 객체 생성시 자동으로 디폴트 생성자를 생성하면 메모리 공간에 할당함) -->
+<!-- <bean class="polymorphism.SonySpeaker" id="speaker"></bean>
+<bean class="polymorphism.SamsungTV" id ="tv" 
+	  init-method="initMethod" 
+	  destroy-method="destroyMethod" 
+	  lazy-init="true" scope="prototype" p:speaker-ref="speaker" p:price="5000">
+p 네임스페이스 사용
+	  생성자 인젝션 사용
+	  <constructor-arg ref="speaker"/>
+	  <constructor-arg value="2000"/>
+	  설정자 인젝션 사용
+	  <property name="speaker" ref="speaker"></property> SetSpeaker () 호출
+	  <property name="price" value="3000"></property>
+</bean> -->	  
+</beans>
