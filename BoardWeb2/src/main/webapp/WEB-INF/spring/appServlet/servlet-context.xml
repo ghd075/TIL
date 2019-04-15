@@ -9,6 +9,8 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
+	<beans:import resource="classpath:context-aop.xml"/>
+	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
