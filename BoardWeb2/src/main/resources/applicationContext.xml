@@ -13,6 +13,7 @@
 <!-- AOP 설정  -->
 <!-- AOP 관련 어노테이션들을 인식하고 용도에 맞게 처리해줌 -->
 <aop:aspectj-autoproxy/>
+<!-- 커넥션 풀 설정 -->
 <!-- 새로운 스프링 컨테이너 포함 -->
 <import resource="context-datasource.xml"/>
 <!-- <import resource="context-aop.xml"/> -->
