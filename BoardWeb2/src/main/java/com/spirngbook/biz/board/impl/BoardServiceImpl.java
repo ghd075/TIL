@@ -11,9 +11,13 @@ import com.spirngbook.biz.board.BoardVO;
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
 	
-	@Autowired
-	private BoardDAO boardDAO;
+	/*
+	 * @Autowired private BoardDAO boardDAO;
+	 */
 	//private Log4jAdvice log = new Log4jAdvice();
+	
+	@Autowired
+	private BoardDAOSpring boardDAO;
 	
 	@Override
 	public void insertBoard(BoardVO vo) {
