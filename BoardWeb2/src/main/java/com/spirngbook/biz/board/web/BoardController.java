@@ -1,4 +1,4 @@
-package com.spirngbook.biz.web;
+package com.spirngbook.biz.board.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
