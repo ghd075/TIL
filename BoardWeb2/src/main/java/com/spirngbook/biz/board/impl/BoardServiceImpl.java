@@ -24,7 +24,6 @@ public class BoardServiceImpl implements BoardService {
 		//log.printLoggin();
 		//around AOP 트랜잭션 처리 시작
 		boardDAO.insertBoard(vo);
-		boardDAO.insertBoard(vo);
 		//commit
 	}
 
