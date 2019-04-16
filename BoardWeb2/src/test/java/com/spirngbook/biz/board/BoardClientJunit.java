@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.fail;
 
 import org.junit.Before;
+import org.junit.Ignore;
 //import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,13 +34,24 @@ public class BoardClientJunit {
 	 */
 	
 	@Test
+	public void insertTest() {
+		vo.setSeq(19);
+		vo.setTitle("트랜잭션");
+		vo.setWriter("이순신");
+		vo.setContent("트랜잭션 테스트");
+		service.insertBoard(vo);
+	}
+	
+	@Ignore //해당 메소드 무시
+	//@Test
 	public void test() {
 		vo.setSeq(1);
 		assertEquals(service.getBoard(vo).getWriter(), "관리자");
 //		fail("Not yet implemented");
 	}
 	
-	@Test
+	@Ignore //해당 메소드 무시
+	//@Test
 	public void deleteTest() {
 		vo.setSeq(8);
 		service.deleteBoard(vo);
