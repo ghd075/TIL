@@ -9,7 +9,8 @@ import com.spirngbook.biz.user.UserVO;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 	@Autowired
-	private UserDAO userDAO;
+	//private UserDAO userDAO;
+	private UserDAOSpring userDAO;
 	
 	@Override
 	public UserVO getUser(UserVO vo) {
