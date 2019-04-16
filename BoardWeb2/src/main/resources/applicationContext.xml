@@ -11,7 +11,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 <!-- 컴포넌트 스캔 설정 -->
 <context:component-scan base-package="com.spirngbook.biz"/>
-<context:component-scan base-package="polymorphism"/>
+<!-- <context:component-scan base-package="polymorphism"/> -->
 <!-- AOP 설정  -->
 <!-- AOP 관련 어노테이션들을 인식하고 용도에 맞게 처리해줌 -->
 <aop:aspectj-autoproxy/>
@@ -22,6 +22,8 @@
 	<property name="url" value="${jdbc.url}"/>
 	<property name="username" value="${jdbc.username}"/>
 	<property name="password" value="${jdbc.password}"/>
+	<property name="maxActive" value="20"></property> <!-- 접속가능한 유저수 -->
+	<property name="maxWait" value="1000"></property> <!-- 최대 대기시간 설정 (1000 = 1초) -->
 </bean>
 <!-- Transaction Manager 설정 -->
 <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
