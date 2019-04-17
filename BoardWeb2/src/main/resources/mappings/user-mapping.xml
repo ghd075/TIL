@@ -21,7 +21,11 @@
      
      <!-- Map으로 회원 목록 조회 -->
      <select id="getUserMap" resultType="map" parameterType="user">
-     	select * from users
+     	select id		as "id",
+     		   name		as "name",
+     		   password	as "password",
+     		   role		as "role" 
+     	from users
      	<if test="role != null and role != ''">
      	where role = #{role}
      	</if> 
