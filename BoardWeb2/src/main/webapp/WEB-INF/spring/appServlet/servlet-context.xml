@@ -10,8 +10,10 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- <beans:import resource="classpath:context-aop.xml"/> -->
-	<beans:import resource="classpath:applicationContext.xml"/>
 	<!-- 서블릿과 AOP를 연결시키기위해서 서블릿 설정파일인 servlet-context에 설정한 aop 등록 -->
+	<beans:import resource="classpath:config/applicationContext.xml"/>
+	<!-- 마이바티스 설정 파일 등록 -->
+	<beans:import resource="classpath:config/context-mapper.xml"/>
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
@@ -25,8 +27,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.spirngbook.biz" />
-	<context:component-scan base-package="com.spirngbook.biz.board" />
+	<context:component-scan base-package="com.springbook.biz" />
+	<context:component-scan base-package="com.springbook.biz.board" />
 	
 	
 	

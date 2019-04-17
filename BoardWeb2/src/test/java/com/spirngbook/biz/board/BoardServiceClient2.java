@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
+import com.springbook.biz.board.BoardService;
+import com.springbook.biz.board.BoardVO;
+
 public class BoardServiceClient2 {
 
 	public static void main(String[] args) {
