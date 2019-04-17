@@ -1,6 +1,7 @@
 package com.springbook.biz.user.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,15 @@ public class UserDAOMybatis {
 		System.out.println("===> Mybatis로  getUserList() 기능 처리");
 		return mybatis.selectList("UserDAO.getUserList");
 
+	}
+	
+	public Integer userCount() {
+		System.out.println("===> Mybatis로   userCount() 기능 처리");
+		return  mybatis.selectOne("UserDAO.userCount");
+	}
+	
+	public List<Map<String, Object>> getUserMap(UserVO vo) {
+		System.out.println("===> Mybatis로 	getUserMap() 기능 처리");
+		return mybatis.selectList("UserDAO.getUserMap", vo);
 	}
 }

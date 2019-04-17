@@ -25,5 +25,6 @@
 	</tr>
 	</c:forEach>
 </table>
+${userList}
 </body>
 </html>

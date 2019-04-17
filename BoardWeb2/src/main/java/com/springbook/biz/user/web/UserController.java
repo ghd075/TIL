@@ -31,8 +31,9 @@ public class UserController {
 	
 	//회원 목록 조회
 	@RequestMapping("/getUserList")
-	public String getUserList(Model model) {
-		model.addAttribute("userList", servie.getUserList());
+	public String getUserList(Model model, UserVO vo) {
+		//model.addAttribute("userList", servie.getUserList());
+		model.addAttribute("userList", servie.getUserMap(vo));
 		return "user/userList";
 	}
 }
