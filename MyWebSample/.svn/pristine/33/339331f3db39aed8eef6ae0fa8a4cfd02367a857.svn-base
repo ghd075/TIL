@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>jogiyo notice 1</title>
+<script src="../js/cookie.js"></script>
+<script>
+function changePopup(obj){
+	if(obj.checked == true) {
+		setCookie("popup1", "N", 1);  		//쿠키에 저장
+		
+	}
+}
+</script>
+</head>
+<body>
+    <table>
+        <tr>        
+            <td><img src="../images/notice1.jpg"></td>     
+        </tr>
+        <tr>
+            <td align="center"><input type="button" value="닫기" onclick="self.close();"/>
+                               오늘은그만보기.<input type="checkbox" onclick="changePopup(this);"/></td>
+        </tr>
+</table>
+</body>
+</html>

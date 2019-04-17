@@ -1,0 +1,633 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+String userId = "";
+try {
+	userId = session.getAttribute("sessionID").toString();	
+} catch (NullPointerException e) {
+	userId = "";
+	// TODO: handle exception
+}  
+%>
+<% String board_no = request.getParameter("board_no"); %>
+<% int bNo = Integer.parseInt(board_no); %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+#board {
+	width:720px;
+}
+#thumbs_up {
+	width:24px;
+}
+.like_btn {
+	width: 24px;
+	height: auto;
+}
+.unlike_btn {
+	width: 24px;
+	height: auto;
+}
+
+table {
+    width: 100%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+}
+td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+}
+ 	
+#commentList, #commentAdd {
+	width:720px;
+}
+ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    clear:both;
+}
+
+li {
+ 	display:inline;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    /*border : 1px solid red;*/
+}
+
+ul[class^=reple] li {
+	/*border:1px solid red;*/
+	margin-left:10px;
+}
+
+ul[class^=reple] li:first-child{
+	width: 20px;
+	display:inline;
+}
+
+ul[class^=reple] li:nth-child(2) {
+	width : 100px;
+}
+
+ul[class^=reple] li:nth-child(3) {
+	width : 100px;
+	font-size: 5px;
+}
+ul[class^=reple] li:nth-child(5) {
+	float:right;
+
+}
+ul[class^=reple] li:nth-child(6) {
+	float:right;
+
+}
+ul[class^=reple] li:nth-child(7) {
+	float:right;
+
+}
+
+ul.txt li {
+	width:700px;
+	height:20px;
+	/*border:1px solid black;*/
+	margin-left:20px;
+	margin-top:5px;
+	margin-bottom:10px;
+}
+.star_rating {font-size:0; letter-spacing:-4px;}
+.star_rating a {
+    font-size:22px;
+    letter-spacing:0;
+    display:inline-block;
+    margin-left:5px;
+    color:#ccc;
+    text-decoration:none;
+}
+.star_rating a:first-child {margin-left:0;}
+.star_rating a.on {color:#e50000;}
+
+</style>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src = "../js/ajax.js"></script>
+<script>
+$(document).ready(function(){
+	loadBoard();
+	loadLike();
+	loadEval();
+	loadCommentList();
+	
+	$( ".star_rating a" ).click(function() {
+	    $(this).parent().children("a").removeClass("on");
+	    $(this).addClass("on").prevAll("a").addClass("on");
+	    return false;
+	});
+	
+	$( "#thumbs_up" ).on( "click", function() {
+		var c_name = $(this).children().attr('class');
+		var like = 0;
+
+		if (c_name == "like_btn") {
+ 			$(this).children().attr('class', 'unlike_btn');
+			$(this).children().attr('src', '../images/unlike.png');
+			like = "delete";
+		} else {
+			$(this).children().attr('class', 'like_btn');
+			$(this).children().attr('src', '../images/like.png');
+			like = "insert";
+		}
+
+		var userId = "<%=userId %>";
+		var bNo = <%=bNo %>;
+		var param = "like="+ like + "&"+
+					"userId="+userId+"&"+
+					"boardNo="+bNo;
+		console.log(param);
+		new ajax.xhr.Request('displaylike.do', param, likeResult, 'POST');
+	});
+	
+});
+
+function loadBoard() {
+	var userId = "<%=userId %>";
+	var bno = <%= bNo %>;
+	var params = "boardNo="+ bno+"&"+
+				"userId="+userId;
+	new ajax.xhr.Request("displayBoard.do", params, boardResult, 'GET');	
+}
+
+function boardResult(req) {
+	if (req.readyState == 4) {    //응답이 완료
+		if (req.status == 200) {  //정상실행
+			console.log("게시판 로드");
+			console.log(JSON.parse(req.responseText));
+			var rs = JSON.parse(req.responseText);
+			var title = rs[0].title;
+			var boardText = rs[0].boardText;
+			var userId = rs[0].userId;
+			var bDate = rs[0].bDate;
+			var cnt = rs[0].cnt;
+			var foodName = rs[0].foodName;
+			var locName= rs[0].locName;
+			var userId = rs[0].userId;
+			var loginId = "<%=userId%>";
+			
+			$("#boardTitle").children().text(title);
+			$("#boardText").html(boardText);
+			$("#boardDate").text(bDate);
+			$("#locCode").text(locName);
+			$("#foodCode").text(foodName);
+			$("#BoardCount").text(cnt);
+			$("#userId").text(userId);
+			
+			if (userId != loginId) {
+				$("#authBtn").empty();	
+			}
+		}
+	}	
+}
+
+function loadLike() {
+	var bno = <%= bNo %>;
+	var userId = "<%=userId%>";
+
+	var params = "boardNo="+ bno +"&"+
+    			 "userId="+userId+"&like=select";
+	new ajax.xhr.Request("displaylike.do", params, likeResult, 'GET');
+}
+
+function likeResult(req) {
+	//console.log(req);
+	//console.log(JSON.parse(req.responseText));
+	if (req.readyState == 4) {    //응답이 완료
+		if (req.status == 200) {  //정상실행
+			console.log(JSON.parse(req.responseText));
+			var rs = JSON.parse(req.responseText);
+			if (rs[0].likeCheck) {
+				console.log("tre");
+				$( "#thumbs_up" ).children().attr('class', 'like_btn');
+				$( "#thumbs_up" ).children().attr('src', '../images/like.png');
+			} else {
+				$( "#thumbs_up" ).children().attr('class', 'unlike_btn');
+				$( "#thumbs_up" ).children().attr('src', '../images/unlike.png');
+			}
+			
+			var likeCount = rs[0].cnt;
+			$("#likeCount").html(likeCount);
+		}
+	}
+}
+
+function loadEval() {
+	var bno = <%=bNo%>;
+	var userId = "<%=userId%>";
+
+	var params = "bNo=" + bno +
+    			"&userId="+userId;
+	new ajax.xhr.Request("checkEval.do", params, loadEvalResult, 'GET');
+}
+
+function loadEvalResult(req) {
+	if (req.readyState == 4) {    //응답이 완료
+		if (req.status == 200) {  //정상실행
+			var rs = JSON.parse(req.responseText);
+			console.log("평점 불러오기");
+			console.log(rs);
+			console.log(rs.length);
+			if (rs.length != 0 && rs[0].checkValue.trim() == "T") {
+				$('.star_rating').empty();
+				return;
+			}
+		}
+	}
+}
+
+function loadCommentList() {
+	var bno = <%= bNo %>;
+	var userId = "<%=userId%>";	
+	var params = "boardNo="+ bno + "&cmd=selectAll";
+	new ajax.xhr.Request("displayComment.do", params, loadCommentResult, 'GET');
+}
+//목록조회 콜백함수
+function loadCommentResult(req) {
+	if (req.readyState == 4) {    //응답이 완료
+		if (req.status == 200) {  //정상실행  
+				// data 태그의 태그바디값(string)을  json 객체로 변환 
+				var list = JSON.parse(req.responseText);
+				
+				//commentList.sort(function(a, b) { // 오름차순
+				    //return a.pNo < b.pNo ? -1 : a.pNo > b.pNo ? 1 : 0;  
+				//});
+				commentList = list.sort(function(a, b) {
+					
+				  var o1 = a.pNo
+				  var o2 = b.pNo
+				  var p1 = a.reSeq
+				  var p2 = b.reSeq
+				 
+				  if (o1 < o2) return -1;
+				  if (o1 > o2) return 1;
+				  if (p1 < p2) return -1;
+				  if (p1 > p2) return 1;
+				  return 0;
+				});
+				console.log("댓글리스트");
+				console.log(commentList);
+				var listDiv = document.getElementById('commentList');
+				//var line = $('<div style="border-top:1px solid gray;"></div>');
+
+				for (var i = 0 ; i < commentList	.length ; i++) {
+					var commentDiv = makeCommentView(commentList[i]);//댓글div 태그생성
+					listDiv.appendChild(commentDiv);  // div목록에 댓글div 추가
+				}
+		} else {  	alert("댓글 목록 로딩 실패:"+req.status);}  //에러인 경우 상태코드 출력
+	}
+}
+
+function makeCommentView(comment){	
+	
+	var cmtDiv = document.createElement("div");		//<div></div>
+	var cmtId = "reple_"+comment.repleNo 
+	cmtDiv.setAttribute("id", cmtId);			//<div id="c2" class="comment">
+	cmtDiv.className = 'comment';
+	cmtDiv.comment = comment;
+	var pClassName = cmtId + " parent_" + comment.pNo;
+	var seqClassName = pClassName + " seq_" + comment.reSeq
+	
+	var score = 0;
+	
+	if (comment.checkValue.trim() == "T") {
+		score = comment.score;
+	} else {
+		score = 0;
+	}
+	
+	var star = "";
+	for (var i = 0; i < score; i++) {
+		star += "★";
+	}
+	
+	var maginLevel = 0;
+	
+	for (var i = 0; i < comment.reLevel; i++) {
+		maginLevel += 20;
+	}
+	
+	var arrow_img ="";
+	
+	if (comment.reLevel > 0) {
+		arrow_img = "<img src='../images/re_arrow.png' style='width: 24px;'>";
+	}
+	var repleModTag = "<span onclick=\"viewUpdateForm('"+cmtId+"')\"><a href='#'>수정</a></span>&nbsp;|";
+	var repleDelTag = "<span onclick=\"confirmDeletion('"+comment.repleNo+"')\"><a href='#'>삭제</a></span>&nbsp;|";
+	var loginId = "<%=userId%>";
+	console.log("댓글 태그");
+	console.log(loginId);
+	if (loginId != comment.userId || loginId == "") {
+		repleModTag = "";
+		repleDelTag = "";
+	}
+	var str = "<div class=\"" + pClassName + "\">" +
+				"<ul class=\"" + seqClassName + "\">" +
+					"<li style=margin-left:"+maginLevel+"px;>"+arrow_img+"</li>&nbsp" +
+					"<li><span>"+ comment.userId + "</span></li>&nbsp" + 
+					"<li><span>"+ comment.rDate + "</span></li>&nbsp" + 
+					"<li><span style=\"color:#e50000;font-weight:bold\">"+ star + "</span></li>&nbsp" +
+					"<li><span onclick=\"viewReAddForm('"+cmtId+"')\"><a href='#'>답글</a></span></li>" +
+					"<li>"+repleModTag+"</li>" + 
+					"<li>"+repleDelTag+"</li>" +				
+				"</ul><br>" +
+				"<ul class='txt'>" +
+					"<li>" + comment.repleText+"</li>" + 
+				"</ul>" +
+				"</div><hr>";
+				//<div style='border-bottom:1px solid gray; margin-top:10px;clear:both;'></div>
+	cmtDiv.innerHTML = str;
+
+	return cmtDiv;
+}
+
+//댓글 수정 ajax 요청
+function updateComment() {	
+	var repleNo = document.updateForm.repleNo.value;
+	var cmtUpdate = document.updateForm.cmtUpdate.value;
+	var params = "repleNo="+ repleNo +"&"+
+	             "cmtUpdate="+encodeURIComponent(cmtUpdate) + "&cmd=update";
+	new ajax.xhr.Request('updateReple.do', params, updateResult, 'POST');
+}
+
+function updateResult(req) {
+	if (req.readyState == 4) {
+		if (req.status == 200) {
+			console.log(req.responseText);
+			var comment = JSON.parse(req.responseText);
+			$("#reple_" + comment.repleNo).find("ul li")[2].innerHTML = comment.rDate;
+			$("#reple_" + comment.repleNo).find("ul li")[7].innerHTML = comment.repleText;
+			//수정폼을 body에 연결
+			cancelUpdate();
+			alert("수정했습니다!");
+		} else {
+			alert("서버 에러 발생: " + req.status);
+		}
+	}	
+
+}
+
+//댓글 삭제 ajax 요청
+function confirmDeletion(repleNo) {
+	if (confirm("정말 삭제하시겠습니까??") == true){    //확인	
+		var params = "repleNo="+ repleNo +"&cmd=delete";
+		new ajax.xhr.Request('deleteReple.do', params, deleteResult, 'POST');
+	}else{   //취소
+	    return;
+	}	
+}
+
+////댓글 삭제 콜백함수
+function deleteResult(req) {
+	if (req.readyState == 4) {
+		if (req.status == 200) {
+			var comment = JSON.parse(req.responseText);
+
+			var listDiv = document.getElementById('commentList');	
+			var commentDiv = document.getElementById('reple_'+comment.id);
+			$("#reple_"+comment.id).remove();
+			alert("삭제했습니다!");
+			location.reload();
+		} else {
+			alert("서버 에러 발생: " + req.status);
+		}
+	}
+}
+//댓글 등록 ajax 요청
+function addComment() {
+
+	if($("textarea[name=cmtContent]").val().length == 0) {
+		alert("댓글을 입력해야합니다.");
+		return false;
+	}
+
+	var score = $('.on').length;
+	var checkValue = "F";
+	if (score > 0) {
+		checkValue = "T";
+	}
+	
+	$("input[name=score]").val(score);
+	$("input[name=checkValue]").val(checkValue);
+	$("input[name=repleText]").val($("textarea[name=cmtContent]").val());
+	
+	document.getElementById("addForm").submit();
+    return false;
+
+}
+
+function addReComment() {
+	if($("textarea[name=cmtContent]").val().length == 0) {
+		alert("댓글을 입력해야합니다.");
+		return false;
+	}
+	var pNo = $('#reCommentAdd').parent()[0].comment.pNo;
+	var reSeq = $('#reCommentAdd').parent()[0].comment.reSeq + 1;
+	var reLevel = $('#reCommentAdd').parent()[0].comment.reLevel + 1;
+	$("input[name=reSeq]").val(reSeq);
+	$("input[name=reLevel]").val(reLevel);
+	$("input[name=pNo]").val(pNo);
+	$("input[name=repleText]").val($("textarea[name=cmtContent]").val());
+	
+	document.getElementById("reAddForm").submit();
+}
+
+
+//답글버튼 이벤트핸들러: 답글할 댓글밑에 답글폼 보이게 함
+function viewReAddForm(repleNo) {
+	
+	cancelUpdate();
+	
+	var commentDiv = document.getElementById(repleNo);
+	var reAddFormDiv = document.getElementById('reCommentAdd');
+	//현재 수정상태(수정폼이 보이고 있음)이면 수정폼이 보이게 할 필요 없음
+	if (reAddFormDiv.parentNode != commentDiv) {
+		commentDiv.appendChild(reAddFormDiv);  //수정폼을 수정할 댓글밑에 보이도록
+	}
+
+	reAddFormDiv.style.display = '';   //수정폼 보이게
+}
+
+//수정버튼 이벤트핸들러: 수정할 댓글밑에 수정폼 보이게 함
+function viewUpdateForm(repleNo) {
+	cancelReComment();
+	
+	var commentDiv = document.getElementById(repleNo);
+	var updateFormDiv = document.getElementById('commentUpdate');
+	//현재 수정상태(수정폼이 보이고 있음)이면 수정폼이 보이게 할 필요 없음
+	if (updateFormDiv.parentNode != commentDiv) {
+		commentDiv.appendChild(updateFormDiv);  //수정폼을 수정할 댓글밑에 보이도록
+	}
+	//수정할 값을 텍스트필드에 보이게
+	var comment = commentDiv.comment;   //댓글 객체 { id:'', content:'', name:'' }
+	document.updateForm.repleNo.value = comment.repleNo;    
+	document.updateForm.cmtUpdate.value = comment.repleText;
+	updateFormDiv.style.display = '';   //수정폼 보이게
+}
+
+//답글 취소
+function cancelReComment() {
+	var reCmtFormDiv = document.getElementById('reCommentAdd');
+	document.body.appendChild(reCmtFormDiv);	
+	reCmtFormDiv.style.display = 'none';	
+}
+//수정 취소
+function cancelUpdate() {
+	//수정폼을 body태그 이동	
+	//수정폼을 안보이게
+	var updateFormDiv = document.getElementById('commentUpdate');
+	document.body.appendChild(updateFormDiv);	
+	updateFormDiv.style.display = 'none';	
+}
+ 
+function idCheck() {
+	var id = "<%=userId%>";
+	
+	if( !id ){
+		alert("로그인이 필요합니다.");
+		
+		$("textarea[name=cmtContent]").val("");
+		$("textarea[name=cmtUpdate]").val("");
+		location.href = "../member/LoginForm.do";
+	}
+	return;
+}
+
+function deleteBoard() {
+	if (confirm("정말 삭제하시겠습니까??") == true){    //확인	
+		var param = "boardNo="+ <%=bNo%>;
+		new ajax.xhr.Request('deleteBoard.do', param, delBoardResult, 'POST');
+	}else{   //취소
+	    return;
+	}
+}
+
+function delBoardResult(req) {
+	if (req.readyState == 4) {
+		if (req.status == 200) {
+			var rs = JSON.parse(req.responseText);
+			if (rs[0]) {
+				alert("정상적으로 삭제되었습니다.");
+				location.href="../main/MianForm.do";
+			} else {
+				alert("삭제 실패했습니다.");
+			}
+		} else {
+			alert("서버 에러 발생: " + req.status);
+		}
+	}	
+} 
+</script>
+</head>
+<body>
+<%@include file="../main/header.jsp"%>
+<%--=userId --%>
+<div id="board">
+	<div id="boardTitle">제목 : <a href="#"></a></div><hr>
+	<div id="boardText"></div>
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<span class="calendar"><img src="../images/icons/calendar.png" width="24px"/></span>
+				    <span id="boardDate"></span>
+				</td>
+				<td><span class="userImg"><img src="../images/icons/user.png" width="24px"/></span>&nbsp;&nbsp;<a href="#" id="userId"></a></td>				
+				<!--
+				<td><a href="#"><div class="fa fa-user"></div> Admin</a></td>
+				<td><a href="#"><span class="fa fa-link"></span> Permalink</a></td>
+				 -->
+			</tr>
+			<tr>
+				<td><span class="locImg"><img src="../images/icons/placeholder.png" width="24px"/></span>&nbsp;&nbsp;<a href="#" id="locCode"></a></td>
+				<td><span class="viewImg"><img src="../images/icons/eye.png" width="24px"/></span>&nbsp;&nbsp;<span id="BoardCount"></span></td>
+			</tr>
+			<tr>
+				<td><span class="foodImg"><img src="../images/icons/restaurant.png" width="24px"/></span>&nbsp;&nbsp;<a href="#" id="foodCode"></a></td>
+				<td>
+					<span id="thumbs_up" >
+						<img class="like_btn" src = "../images/like.png">
+					</span>&nbsp;
+					<span id="likeCount"><%= 0 %></span>
+				</td>		
+			</tr>
+		</tbody>
+	</table>
+	<div id = "authBtn" style="clear:both; margin-bottom:20px; height:40px;">
+		<div style="float:right;margin-top:20px;">
+			<a href="updateBoardPage.do?board_no=<%= Integer.toString(bNo) %>" class="bdMod" <%= Integer.toString(bNo) %>>수정</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="#" class="bdDel" onclick="deleteBoard();">삭제</a>
+		</div>
+	</div>
+</div>
+<hr>
+<div id="vw_dut_ttl">
+	<p class="flt" >덧글&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;운영정책에 위배되는 덧글들은 운영자 판단하에 제재될 수 있습니다.</p>
+</div>
+<hr>
+<div id="commentList"></div>
+<!-- 댓글등록시작 -->
+<div id="commentAdd">
+	<form action="insertBoard.do" name="addForm" id="addForm">
+		<p class="star_rating">
+		    <a href="#">★</a>
+		    <a href="#">★</a>
+		    <a href="#">★</a>
+		    <a href="#">★</a>
+		    <a href="#">★</a>
+		</p>
+		<textarea name="cmtContent" style="width:720px;height:68px;border:1px solid #ddd;" onclick="idCheck()" required="required"></textarea><br/>
+		<input type="button" value="댓글" onclick="addComment()"/>
+		<input type="hidden" name="cmt" value="cmtInsert" />
+		<input type="hidden" name="pNo" value="0" />
+		<input type="hidden" name="score" value="" />
+		<input type="hidden" name="checkValue" value="" />
+		<input type="hidden" name="reSeq" value="1" />
+		<input type="hidden" name="reLevel" value="0" />		
+		<input type="hidden" name="repleText" value="" />		
+		<input type="hidden" name="userId" value="<%= userId %>" />
+		<input type="hidden" name="bno" value="<%= bNo %>" /><!-- 게시판번호 입력해야함 -->
+	</form>
+</div>
+<!-- 댓글등록끝 -->
+<!-- 답글등록시작 -->
+<div id="reCommentAdd" style="display:none">
+	<form action="insertBoard.do" name="reAddForm" id="reAddForm">
+		<textarea name="cmtContent" style="width:610px;height:68px;border:1px solid #ddd;" onclick="idCheck()" required="required"></textarea><br/>
+		<input type="button" value="답글" onclick="addReComment()"/>
+		<input type="button" value="취소" onclick="cancelReComment()"/>
+		<input type="hidden" name="cmt" value="reCmtInsert" />
+		<input type="hidden" name="pNo" value="" />
+		<input type="hidden" name="score" value="0" />
+		<input type="hidden" name="checkValue" value="F" />		
+		<input type="hidden" name="reSeq" value="" />
+		<input type="hidden" name="reLevel" value="" />
+		<input type="hidden" name="repleText" value="" />
+		<input type="hidden" name="userId" value="<%= userId %>" />
+		<input type="hidden" name="bno" value="<%= bNo %>" /><!-- 게시판번호 입력해야함 -->
+	</form>
+</div>
+<!-- 답글등록끝 -->
+<!-- 댓글수정폼시작 -->
+<div id="commentUpdate" style="display:none">
+	<form action="" name="updateForm">
+	<input type="hidden" name="repleNo" value=""/>
+	<textarea name="cmtUpdate" style="width:610px;height:68px;border:1px solid #ddd;" onclick="idCheck()" required="required"></textarea><br/>
+	<input type="button" value="수정" onclick="updateComment()"/>
+	<input type="button" value="취소" onclick="cancelUpdate()"/>
+	</form>
+</div>
+<!-- 댓글수정폼끝 -->
+<%@include file="../main/footer.jsp"%>
+</body>
+</html>
