@@ -2,6 +2,7 @@ package com.springbook.biz.user.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.springbook.biz.user.UserService;
@@ -26,5 +27,12 @@ public class UserController {
 			return "login";
 		else
 			return "redirect:boardList";
+	}
+	
+	//회원 목록 조회
+	@RequestMapping("/getUserList")
+	public String getUserList(Model model) {
+		model.addAttribute("userList", servie.getUserList());
+		return "user/userList";
 	}
 }
