@@ -52,6 +52,7 @@
 <!-- 새로운 스프링 컨테이너 포함 -->
 <import resource="context-datasource.xml"/>
 <!-- <import resource="context-aop.xml"/> -->
+
 <!-- bean 생성(해당 클래스가 객체 생성시 자동으로 디폴트 생성자를 생성하면 메모리 공간에 할당함) -->
 <!-- <bean class="polymorphism.SonySpeaker" id="speaker"></bean>
 <bean class="polymorphism.SamsungTV" id ="tv" 
