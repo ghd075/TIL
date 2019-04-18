@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="emp">
+
 <insert id="insertDept" parameterType="emp">
+	<selectKey keyProperty="departmentId" resultType="string" order="BEFORE">
+		SELECT MAX(DEPARTMENT_ID)+10 FROM HR.DEPARTMENTS
+	</selectKey>
 	INSERT INTO HR.DEPARTMENTS(DEPARTMENT_ID, DEPARTMENT_NAME) 
     VALUES ( #{departmentId}, #{departmentName})	
 </insert>
@@ -49,6 +53,9 @@
 		   COUNT(*) EMP_COUNT
 	FROM HR.DEPARTMENTS NATURAL JOIN HR.EMPLOYEES 
 	GROUP BY DEPARTMENT_ID, DEPARTMENT_NAME
+	<![CDATA[
+	HAVING COUNT(*) < 5
+	]]>
 </select>
 
 </mapper>

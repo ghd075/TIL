@@ -37,7 +37,7 @@ public class DeptDAOClient {
 		System.out.println(dao.getDept(vo));
 	}
 	
-	@Test
+	@Ignore
 	public void test2() {
 		DeptVO vo = new DeptVO();
 		//vo.setDepartmentId("20");
@@ -46,5 +46,12 @@ public class DeptDAOClient {
 			System.out.println(temp.get("id") + " : " + temp.get("name") + " : " + temp.get("cnt"));
 		}
 	}
-
+	
+	@Test
+	public void test3() {
+		DeptVO vo = new DeptVO();
+		vo.setDepartmentName("디자인팀");
+		dao.insertDept(vo);
+		System.out.println("등록된 부서번호 : " + vo.getDepartmentId());
+	}
 }
