@@ -30,4 +30,18 @@
 	WHERE DEPARTMENT_ID = #{departmentId}
 </delete>
 
+<select id="getCount" resultType="int">
+	SELECT COUNT(*)
+	FROM HR.DEPARTMENTS
+</select>
+
+<!-- 부서별사원정보 -->
+<select id="getDeptCnt" resultType="map">
+	SELECT DEPARTMENT_ID,
+		   DEPARTMENT_NAME,
+		   COUNT(*) EMP_COUNT
+	FROM HR.DEPARTMENTS NATURAL JOIN HR.EMPLOYEES 
+	GROUP BY DEPARTMENT_ID, DEPARTMENT_NAME
+</select>
+
 </mapper>

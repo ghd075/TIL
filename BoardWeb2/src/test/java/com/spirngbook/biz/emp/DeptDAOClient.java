@@ -2,6 +2,10 @@ package com.spirngbook.biz.emp;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+import java.util.Map;
+
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +23,28 @@ public class DeptDAOClient {
 	@Autowired
 	DeptDAO dao;
 	
-	@Test
+	@Ignore
+	public void test1() {
+		DeptVO vo = new DeptVO();
+		vo.setDepartmentId("20");
+		System.out.println(dao.getCount());
+	}
+	
+	@Ignore
 	public void test() {
 		DeptVO vo = new DeptVO();
 		vo.setDepartmentId("10");
 		System.out.println(dao.getDept(vo));
+	}
+	
+	@Test
+	public void test2() {
+		DeptVO vo = new DeptVO();
+		//vo.setDepartmentId("20");
+		List<Map<String, Object>> list = dao.getDeptCnt();
+		for(Map<String, Object> temp : list) {
+			System.out.println(temp.get("DEPARTMENT_ID") + " : " + temp.get("DEPARTMENT_NAME"));
+		}
 	}
 
 }
