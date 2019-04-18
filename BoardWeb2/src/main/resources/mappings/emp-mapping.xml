@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="emp">
+<insert id="insertDept" parameterType="emp">
+	INSERT INTO HR.DEPARTMENTS(DEPARTMENT_ID, DEPARTMENT_NAME) 
+    VALUES ( #{departmentId}, #{departmentName})	
+</insert>
+
+<select id="getDept" parameterType="emp"
+	resultType="emp">
+	SELECT DEPARTMENT_ID,
+		   DEPARTMENT_NAME,
+		   MANAGER_ID,
+		   LOCATION_ID
+	FROM HR.DEPARTMENTS
+	WHERE DEPARTMENT_ID = #{departmentId}
+</select>
+
+<update id="updateDept">
+	UPDATE HR.DEPARTMENTS
+	SET DEMPARTMENT_NAME = #{departmentName},
+		MANAGER_ID = #{managerId},
+		LOCATION_ID = #{locationId},
+	WHERE DEPARTMENT_ID = #{departmentId}
+</update>
+
+<delete id="deleteDept">
+	DELETE
+	FROM HR.DEPARTMENTS
+	WHERE DEPARTMENT_ID = #{departmentId}
+</delete>
+
+</mapper>

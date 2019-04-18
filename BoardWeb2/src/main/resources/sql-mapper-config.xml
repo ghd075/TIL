@@ -2,8 +2,13 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+	<settings>
+		<!-- 오라클 컬럼이 first_name 를 VO firstName 처럼 카멜케이스로 변환 -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
     <typeAliases>
 		<typeAlias alias="board" type="com.springbook.biz.board.BoardVO"/>
 		<typeAlias alias="user" type="com.springbook.biz.user.UserVO"/>
+		<typeAlias alias="emp" type="com.springbook.biz.emp.DeptVO"/>
     </typeAliases>
 </configuration>

@@ -17,7 +17,7 @@ import com.springbook.biz.board.BoardVO;
 
 //import com.spirngbook.biz.board.impl.BoardDAOSpring;
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="classpath:applicationContext.xml")
+@ContextConfiguration(locations="classpath:config/applicationContext.xml")
 public class BoardClientJunit {
 	
 	@Autowired
