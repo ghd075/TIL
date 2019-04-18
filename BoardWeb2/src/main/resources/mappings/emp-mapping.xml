@@ -6,8 +6,25 @@
 	<selectKey keyProperty="departmentId" resultType="string" order="BEFORE">
 		SELECT MAX(DEPARTMENT_ID)+10 FROM HR.DEPARTMENTS
 	</selectKey>
-	INSERT INTO HR.DEPARTMENTS(DEPARTMENT_ID, DEPARTMENT_NAME) 
-    VALUES ( #{departmentId}, #{departmentName})	
+	INSERT INTO HR.DEPARTMENTS(
+								DEPARTMENT_ID 
+								,DEPARTMENT_NAME
+	<if test="managerId != null and managerId != ''">
+								,MANAGER_ID
+	</if>
+	<if test="locationId != null and locationId != ''">
+								,LOCATION_ID
+	</if>
+								) 
+    VALUES ( #{departmentId} 
+    		 ,#{departmentName}
+    	<if test="managerId != null and managerId != ''">
+    		 ,#{managerId}
+    	</if>
+    	<if test="locationId != null and locationId != ''">
+    		,#{locationId}
+    	</if>
+    		)	
 </insert>
 
 <select id="getDept" parameterType="emp"
