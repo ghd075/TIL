@@ -43,7 +43,7 @@ public class DeptDAOClient {
 		//vo.setDepartmentId("20");
 		List<Map<String, Object>> list = dao.getDeptCnt();
 		for(Map<String, Object> temp : list) {
-			System.out.println(temp.get("DEPARTMENT_ID") + " : " + temp.get("DEPARTMENT_NAME"));
+			System.out.println(temp.get("id") + " : " + temp.get("name") + " : " + temp.get("cnt"));
 		}
 	}
 

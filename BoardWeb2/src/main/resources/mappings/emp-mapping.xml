@@ -36,7 +36,14 @@
 </select>
 
 <!-- 부서별사원정보 -->
-<select id="getDeptCnt" resultType="map">
+<resultMap type="map" id="deptCntResult">
+	<id property="id" column="DEPARTMENT_ID"/>
+	<result property="name" column="DEPARTMENT_NAME"/>
+	<result property="cnt" column="EMP_COUNT"/>
+</resultMap>
+
+<!-- <select id="getDeptCnt" resultType="map"> -->
+<select id="getDeptCnt" resultMap="deptCntResult">
 	SELECT DEPARTMENT_ID,
 		   DEPARTMENT_NAME,
 		   COUNT(*) EMP_COUNT
