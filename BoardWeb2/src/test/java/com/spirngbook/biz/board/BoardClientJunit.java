@@ -39,12 +39,20 @@ public class BoardClientJunit {
 	 * public static void init() { vo = new BoardVO(); }
 	 */
 	
+	//목록수정
+	@Test
+	public void updateTest() {
+		vo.setSeq(1);
+		vo.setCnt(10);
+		service.updateBoard(vo);
+	}
+	
 	//목록조회
 	@Test
 	public void getBoardList() {
 		
-		vo.setSearchCondition("CONTENT"); 
-		vo.setSearchKeyword("안녕하세요.");
+		vo.setSearchCondition("TITLE"); 
+		vo.setSearchKeyword("가입인사");
 		 
 		List<BoardVO> list = service.getBoardList(vo);
 		for(BoardVO board : list) {

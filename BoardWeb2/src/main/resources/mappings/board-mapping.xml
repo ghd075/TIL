@@ -21,13 +21,17 @@
         ]]>
     </insert>
     
-    <update id="updateBoard">
-        <![CDATA[
-        UPDATE BOARD SET
-            TITLE = #{title}, 
-            CONTENT = #{content} 
+    <update id="updateBoard" parameterType="board">
+<!--         <![CDATA[ -->
+        UPDATE BOARD 
+        	<set>
+	        	<if test="title != null">TITLE = #{title}, </if>
+	            <if test="content != null">CONTENT = #{content},</if>
+	            <if test="writer != null">WRITER = #{writer},</if>
+	            <if test="cnt != null">CNT = #{cnt}</if>
+        	</set>
         WHERE SEQ = #{seq}
-        ]]>
+<!--         ]]> -->
     </update>
     
     <delete id="deleteBoard">
