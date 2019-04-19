@@ -40,7 +40,8 @@ public class BoardClientJunit {
 	 */
 	
 	//목록수정
-	@Test
+	//@Test
+	@Ignore
 	public void updateTest() {
 		vo.setSeq(1);
 		vo.setCnt(10);
@@ -48,11 +49,12 @@ public class BoardClientJunit {
 	}
 	
 	//목록조회
-	@Test
+	//@Test
+	@Ignore
 	public void getBoardList() {
 		
-		vo.setSearchCondition("TITLE"); 
-		vo.setSearchKeyword("가입인사");
+		//vo.setSearchCondition("TITLE"); 
+		//vo.setSearchKeyword("가입인사");
 		 
 		List<BoardVO> list = service.getBoardList(vo);
 		for(BoardVO board : list) {
@@ -78,10 +80,12 @@ public class BoardClientJunit {
 //		fail("Not yet implemented");
 	}
 	
-	@Ignore //해당 메소드 무시
-	//@Test
+	//@Ignore //해당 메소드 무시
+	@Test
 	public void deleteTest() {
-		vo.setSeq(8);
+		String[] seqs = {"11","12","13"};
+		//vo.setSeq(8);
+		vo.setSeqs(seqs);
 		service.deleteBoard(vo);
 	}
 }

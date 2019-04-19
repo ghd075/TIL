@@ -11,6 +11,7 @@ public class BoardVO {
 	private int cnt;
 	private String searchCondition;
 	private String searchKeyword;
+	private String[] seqs;
 	
 	public int getSeq() {
 		return seq;
@@ -74,6 +75,14 @@ public class BoardVO {
 
 	public void setSearchKeyword(String searchKeyword) {
 		this.searchKeyword = searchKeyword;
+	}
+
+	public String[] getSeqs() {
+		return seqs;
+	}
+
+	public void setSeqs(String[] seqs) {
+		this.seqs = seqs;
 	}
 
 	@Override
