@@ -16,12 +16,12 @@ public class BoardController {
 	
 	//목록조회
 	@RequestMapping("/boardList")
-	public String boardList(Model model) {
+	public String boardList(Model model, BoardVO vo) {
 		/*
 		 * ArrayList<String> list = new ArrayList<String>(); list.add("사과");
 		 * list.add("바나나");
 		 */
-		model.addAttribute("list", service.getBoardList(null));
+		model.addAttribute("list", service.getBoardList(vo));
 		return "board";
 	}
 	
@@ -35,6 +35,13 @@ public class BoardController {
 	@RequestMapping("/boardInsert")
 	public String boardInsert(BoardVO vo) {
 		service.insertBoard(vo);
+		return "redirect:boardList";
+	}
+	
+	//삭제
+	@RequestMapping("/deleteBoard")
+	public String deleteBoard(BoardVO vo) {
+		service.deleteBoard(vo);
 		return "redirect:boardList";
 	}
 }

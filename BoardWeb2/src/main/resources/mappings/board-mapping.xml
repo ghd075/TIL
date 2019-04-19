@@ -80,7 +80,7 @@
     	<!-- </if> -->
     	</choose>
 	    </where>
-    	ORDER BY SEQ DESC
+    	ORDER BY SEQ
 </select>
 
 </mapper>
