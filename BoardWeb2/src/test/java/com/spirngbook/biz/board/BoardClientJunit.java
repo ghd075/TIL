@@ -3,6 +3,8 @@ package com.spirngbook.biz.board;
 import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.fail;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Ignore;
 //import org.junit.BeforeClass;
@@ -17,7 +19,8 @@ import com.springbook.biz.board.BoardVO;
 
 //import com.spirngbook.biz.board.impl.BoardDAOSpring;
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="classpath:config/applicationContext.xml")
+@ContextConfiguration(locations= {"classpath:config/applicationContext.xml",
+								  "classpath:config/context-mapper.xml"})
 public class BoardClientJunit {
 	
 	@Autowired
@@ -36,7 +39,21 @@ public class BoardClientJunit {
 	 * public static void init() { vo = new BoardVO(); }
 	 */
 	
+	//목록조회
 	@Test
+	public void getBoardList() {
+		
+		vo.setSearchCondition("CONTENT"); 
+		vo.setSearchKeyword("안녕하세요.");
+		 
+		List<BoardVO> list = service.getBoardList(vo);
+		for(BoardVO board : list) {
+			System.out.println(board);
+		}
+	}
+	
+	//@Test
+	@Ignore
 	public void insertTest() {
 		vo.setSeq(19);
 		vo.setTitle("트랜잭션");

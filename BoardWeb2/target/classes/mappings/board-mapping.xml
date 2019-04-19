@@ -45,18 +45,24 @@
         ]]>
     </select>
     
-    <select id="getBoardList" resultMap="boardResult">
+    <select id="getBoardList" resultMap="boardResult" parameterType="board">
 	    SELECT * 
 	    FROM BOARD
 	    <!-- WHERE 1 = 1 -->
 	    <!-- 동적 쿼리 작성 -->
 	    <where>
-    	<if test="searchCondition == 'TITLE'">
-        AND TITLE LIKE '%'||#{searchKeyword}||'%' 
-    	</if>
-    	<if test="searchCondition == 'CONTENT'">
-        AND CONTENT LIKE '%'||#{searchKeyword}||'%' 
-    	</if>
+    	<!-- <if test="searchCondition == 'TITLE'"> -->
+    	<choose>
+    		<when test="searchCondition == 'TITLE'">
+		        AND TITLE LIKE '%'||#{searchKeyword}||'%' 
+    		</when>
+    	<!-- </if> -->
+    	<!-- <if test="searchCondition == 'CONTENT'"> -->
+    		<when test="searchCondition == 'CONTENT'">
+		        AND CONTENT LIKE '%'||#{searchKeyword}||'%' 
+    		</when>
+    	<!-- </if> -->
+    	</choose>
 	    </where>
     	ORDER BY SEQ DESC
 </select>

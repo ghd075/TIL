@@ -13,7 +13,8 @@ import com.springbook.biz.user.UserService;
 import com.springbook.biz.user.UserVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations="classpath:config/applicationContext.xml")
+@ContextConfiguration(locations= {"classpath:config/applicationContext.xml",
+								  "classpath:config/context-mapper.xml"})
 public class UserClient {
 	@Autowired
 	UserService service;
