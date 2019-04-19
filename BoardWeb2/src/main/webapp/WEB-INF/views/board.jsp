@@ -35,9 +35,9 @@
 	<tr><th>번호</th><th>작성자</th><th>제목</th><th>내용</th><th>작성일자</th><th>조회수</th><th>삭제</th></tr>
 	<c:forEach items="${list}" var="board">
 		<tr>
-			<td>${board.seq}</td>
+			<td>${board.seq}</a></td>
 			<td>${board.writer}</td>
-			<td>${board.title}</td>
+			<td><a href="boardUpdateForm?seq=${board.seq}">${board.title}</td>
 			<td>${board.content}</td>
 			<td>${board.regDate}</td>
 			<td>${board.cnt}</td>

@@ -7,6 +7,7 @@
 <title>boardInsert.jsp</title>
 </head>
 <body>
+<h3>게시글 등록</h3>
 <form action="boardInsert">
 	작성자<input name="writer"><br>
 	제목<input name="title"><br>

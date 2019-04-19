@@ -14,6 +14,21 @@ public class BoardController {
 	@Autowired
 	BoardService service;
 	
+	//수정폼
+	@RequestMapping("boardUpdateForm")
+	public String boardUpdateForm(Model model, BoardVO vo) {
+		//단건조회
+		model.addAttribute("board", service.getBoard(vo));
+		return "boardUpdate";
+	}
+	
+	//수정처리
+	@RequestMapping("boardUpdate")
+	public String boardUpdate(BoardVO vo) {
+		service.updateBoard(vo);
+		return "redirect:boardList";
+	}
+	
 	//목록조회
 	@RequestMapping("/boardList")
 	public String boardList(Model model, BoardVO vo) {
