@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
+import com.springbook.biz.common.Paging;
 
 @Controller
 public class BoardController {
@@ -31,11 +32,15 @@ public class BoardController {
 	
 	//목록조회
 	@RequestMapping("/boardList")
-	public String boardList(Model model, BoardVO vo) {
+	public String boardList(Model model, BoardVO vo, Paging paging) {
 		/*
 		 * ArrayList<String> list = new ArrayList<String>(); list.add("사과");
 		 * list.add("바나나");
 		 */
+		//페이징 처리
+		//전체건수
+		paging.setTotalRecord(service.getBoardCount(vo));
+		
 		model.addAttribute("list", service.getBoardList(vo));
 		return "board";
 	}

@@ -36,4 +36,9 @@ public class BoardDAOMybatis {
 		System.out.println("===> Mybatis로 getBoardList() 기능 처리");
 		return mybatis.selectList("BoardDAO.getBoardList", vo);
 	}
+	
+	public Integer getBoardCount(BoardVO vo) {
+		System.out.println("===> Mybatis로 getBoardCount() 기능 처리");
+		return mybatis.selectOne("BoardDAO.getBoardCount", vo);
+	}
 }

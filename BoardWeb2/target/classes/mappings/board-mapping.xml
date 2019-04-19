@@ -83,4 +83,24 @@
     	ORDER BY SEQ
 </select>
 
+<!-- 페이징 처리 -->
+<select id="getBoardCount" resultType="int">
+	SELECT COUNT(*)
+	FROM BOARD
+	<!-- 동적 쿼리 작성 -->
+	<where>
+    <!-- <if test="searchCondition == 'TITLE'"> -->
+    <choose>
+    	<when test="searchCondition == 'TITLE'">
+			AND TITLE LIKE '%'||#{searchKeyword}||'%' 
+    	</when>
+    <!-- </if> -->
+    <!-- <if test="searchCondition == 'CONTENT'"> -->
+    <when test="searchCondition == 'CONTENT'">
+			AND CONTENT LIKE '%'||#{searchKeyword}||'%' 
+    </when>
+    <!-- </if> -->
+    </choose>
+	</where>	
+</select>
 </mapper>

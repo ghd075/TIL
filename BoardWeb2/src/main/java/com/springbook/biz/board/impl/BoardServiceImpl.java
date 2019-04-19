@@ -54,4 +54,9 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.getBoardList(vo);
 	}
 
+	@Override
+	public Integer getBoardCount(BoardVO vo) {
+		// TODO Auto-generated method stub
+		return boardDAO.getBoardCount(vo);
+	}
 }
