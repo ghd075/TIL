@@ -1,6 +1,7 @@
 package com.springbook.biz.board;
 
 import java.sql.Date;
+import java.util.Arrays;
 
 public class BoardVO {
 	private int seq;
@@ -88,6 +89,7 @@ public class BoardVO {
 	@Override
 	public String toString() {
 		return "BoardVO [seq=" + seq + ", title=" + title + ", writer=" + writer + ", content=" + content + ", regDate="
-				+ regDate + ", cnt=" + cnt + "]";
+				+ regDate + ", cnt=" + cnt + ", searchCondition=" + searchCondition + ", searchKeyword=" + searchKeyword
+				+ ", seqs=" + Arrays.toString(seqs) + "]";
 	}
 }
