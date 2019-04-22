@@ -1,9 +1,14 @@
 package com.springbook.biz.user.web;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.springbook.biz.user.UserService;
 import com.springbook.biz.user.UserVO;
@@ -15,20 +20,34 @@ public class UserController {
 	UserService servie;
 	
 	//로그인폼
-	@RequestMapping("/loginForm")
+	@RequestMapping(value= {"/loginForm", "/login"},method=RequestMethod.GET)
 	public String loginForm() {
 		return "login";
 	}
 	
 	//로그인 처리
-	@RequestMapping("/login")
-	public String login(UserVO vo) {
-		if(servie.getUser(vo) == null)
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+	public String login(@ModelAttribute("user") UserVO vo, 
+						HttpServletRequest request, 
+						HttpSession session) {
+		//커맨드 객체는 자동으로 model.addAttribute("user", vo)
+		UserVO user = servie.getUser(vo); 
+		if( user == null)
 			return "login";
-		else
+		else {
+			session.setAttribute("userName", user.getName());
+			session.setAttribute("Id", user.getId());
+			session.setAttribute("user", user);
 			return "redirect:boardList";
+		}
 	}
 	
+	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate(); //세션 무효화
+		return "login";
+	}
 	//회원 목록 조회
 	@RequestMapping("/getUserList")
 	public String getUserList(Model model, UserVO vo) {

@@ -5,10 +5,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>board.jsp</title>
 </head>
 <body>
 <h3>게시판</h3>
+<%-- 로그인 성공 --%>
+<c:if test="${not empty sessionScope.userName}">
+	${userName} 님 환영합니다.
+	<input type="button" onclick="location='logout'" value="로그아웃">
+</c:if>
+<%-- 로그인 실패 --%>
+<c:if test="${empty sessionScope.userName}">
+	<a href="login">로그인</a>
+</c:if>
+
 <%-- ${list} --%>
 <%-- 검색조건 : ${boardVO} --%>
 <form name="searchFrm">
