@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.springbook.biz.user.UserService;
 import com.springbook.biz.user.UserVO;
@@ -50,9 +51,15 @@ public class UserController {
 	}
 	//회원 목록 조회
 	@RequestMapping("/getUserList")
-	public String getUserList(Model model, UserVO vo) {
+	//public String getUserList(Model model, UserVO vo) {
 		//model.addAttribute("userList", servie.getUserList());
-		model.addAttribute("userList", servie.getUserMap(vo));
-		return "user/userList";
-	}
+		//model.addAttribute("userList", servie.getUserMap(vo));
+		//return "user/userList";
+	//}
+	//Controller의 리턴타입
+	public ModelAndView getUserList(ModelAndView mv, UserVO vo) {
+		mv.addObject("userList", servie.getUserMap(vo));
+		mv.setViewName("user/userList");
+		return mv;
+	}	
 }
