@@ -47,7 +47,10 @@
 		<tr>
 			<td>${board.seq}</a></td>
 			<td>${board.writer}</td>
-			<td><a href="boardUpdate?seq=${board.seq}">${board.title}</td>
+			<%--방법1 --%>
+			<%-- <td><a href="boardUpdate?seq=${board.seq}">${board.title}</td> --%>
+			<%--방법2 --%>
+			<td><a href="boardUpdate/${board.seq}">${board.title}</td>
 			<td>${board.content}</td>
 			<td>${board.regDate}</td>
 			<td>${board.cnt}</td>

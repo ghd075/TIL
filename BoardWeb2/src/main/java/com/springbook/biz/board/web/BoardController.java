@@ -3,6 +3,7 @@ package com.springbook.biz.board.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,12 +19,23 @@ public class BoardController {
 	BoardService service;
 	
 	//수정폼
-	@RequestMapping(value ="/boardUpdate", method=RequestMethod.GET)
-	public String boardUpdateForm(Model model, BoardVO vo) {
+	//방법2
+	@RequestMapping(value ="/boardUpdate/{seq}", method=RequestMethod.GET)
+	public String boardUpdateForm(Model model,
+								  @PathVariable Integer seq,
+								  BoardVO vo) {
+		vo.setSeq(seq); //seq 값 넘기기
 		//단건조회
 		model.addAttribute("board", service.getBoard(vo));
 		return "boardUpdate";
 	}
+	
+	//방법1
+	/*
+	 * @RequestMapping(value ="/boardUpdate", method=RequestMethod.GET) public
+	 * String boardUpdateForm(Model model, BoardVO vo) { //단건조회
+	 * model.addAttribute("board", service.getBoard(vo)); return "boardUpdate"; }
+	 */
 	
 	//수정처리
 	@RequestMapping(value="/boardUpdate", method=RequestMethod.POST)
