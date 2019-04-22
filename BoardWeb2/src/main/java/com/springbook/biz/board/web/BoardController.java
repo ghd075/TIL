@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
@@ -16,7 +17,7 @@ public class BoardController {
 	BoardService service;
 	
 	//수정폼
-	@RequestMapping("boardUpdateForm")
+	@RequestMapping(value ="/boardUpdate", method=RequestMethod.GET)
 	public String boardUpdateForm(Model model, BoardVO vo) {
 		//단건조회
 		model.addAttribute("board", service.getBoard(vo));
@@ -24,7 +25,7 @@ public class BoardController {
 	}
 	
 	//수정처리
-	@RequestMapping("boardUpdate")
+	@RequestMapping(value="/boardUpdate", method=RequestMethod.POST)
 	public String boardUpdate(BoardVO vo) {
 		service.updateBoard(vo);
 		return "redirect:boardList";

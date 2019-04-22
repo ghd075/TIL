@@ -8,7 +8,7 @@
 </head>
 <body>
 <h3>게시글 수정</h3>
-<form action="boardUpdate">
+<form action="boardUpdate" method="post">
 	<input type="hidden" name="seq" value="${board.seq}">
 	작성자<input name="writer" value="${board.writer}"><br>
 	제목<input name="title" value="${board.title}"><br>

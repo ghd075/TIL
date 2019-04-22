@@ -37,7 +37,7 @@
 		<tr>
 			<td>${board.seq}</a></td>
 			<td>${board.writer}</td>
-			<td><a href="boardUpdateForm?seq=${board.seq}">${board.title}</td>
+			<td><a href="boardUpdate?seq=${board.seq}">${board.title}</td>
 			<td>${board.content}</td>
 			<td>${board.regDate}</td>
 			<td>${board.cnt}</td>
