@@ -68,17 +68,20 @@
 	    <!-- 동적 쿼리 작성 -->
 	    <where>
     	<!-- <if test="searchCondition == 'TITLE'"> -->
-    	<choose>
-    		<when test="searchCondition == 'TITLE'">
-		        AND TITLE LIKE '%'||#{searchKeyword}||'%' 
-    		</when>
-    	<!-- </if> -->
-    	<!-- <if test="searchCondition == 'CONTENT'"> -->
-    		<when test="searchCondition == 'CONTENT'">
-		        AND CONTENT LIKE '%'||#{searchKeyword}||'%' 
-    		</when>
-    	<!-- </if> -->
-    	</choose>
+    	<!-- 방법2 -->
+    	<if test="searchKeyword != null and searchKeyword != ''">
+	    	<choose>
+	    		<when test="searchCondition == 'TITLE'">
+			        AND TITLE LIKE '%'||#{searchKeyword}||'%' 
+	    		</when>
+	    	<!-- </if> -->
+	    	<!-- <if test="searchCondition == 'CONTENT'"> -->
+	    		<when test="searchCondition == 'CONTENT'">
+			        AND CONTENT LIKE '%'||#{searchKeyword}||'%' 
+	    		</when>
+	    	<!-- </if> -->
+	    	</choose>
+    	</if>
 	    </where>
     	ORDER BY SEQ
 </select>
@@ -89,18 +92,21 @@
 	FROM BOARD
 	<!-- 동적 쿼리 작성 -->
 	<where>
-    <!-- <if test="searchCondition == 'TITLE'"> -->
-    <choose>
-    	<when test="searchCondition == 'TITLE'">
-			AND TITLE LIKE '%'||#{searchKeyword}||'%' 
-    	</when>
-    <!-- </if> -->
-    <!-- <if test="searchCondition == 'CONTENT'"> -->
-    <when test="searchCondition == 'CONTENT'">
-			AND CONTENT LIKE '%'||#{searchKeyword}||'%' 
-    </when>
-    <!-- </if> -->
-    </choose>
+	<!-- 방법2 -->
+    <if test="searchKeyword != null and searchKeyword != ''">
+	    <!-- <if test="searchCondition == 'TITLE'"> -->
+	    <choose>
+	    	<when test="searchCondition == 'TITLE'">
+				AND TITLE LIKE '%'||#{searchKeyword}||'%' 
+	    	</when>
+	    <!-- </if> -->
+	    <!-- <if test="searchCondition == 'CONTENT'"> -->
+	    <when test="searchCondition == 'CONTENT'">
+				AND CONTENT LIKE '%'||#{searchKeyword}||'%' 
+	    </when>
+	    <!-- </if> -->
+	    </choose>
+    </if>
 	</where>	
 </select>
 </mapper>

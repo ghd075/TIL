@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
@@ -33,11 +34,23 @@ public class BoardController {
 	
 	//목록조회
 	@RequestMapping("/boardList")
-	public String boardList(Model model, BoardVO vo, Paging paging) {
+	//public String boardList(Model model, BoardVO vo, Paging paging) {
+	public String boardList(Model model, Paging paging, 
+							@RequestParam(value="searchCondition", 
+										  defaultValue="TITLE", 
+										  required=false) String condition,
+							@RequestParam(value="searchKeyword", 
+										  required=false) String keyword) {
+							//방법1
+							//@RequestParam(value="searchKeyword", defaultValue="", required=false) String searchKeyword) {
 		/*
 		 * ArrayList<String> list = new ArrayList<String>(); list.add("사과");
 		 * list.add("바나나");
 		 */
+		BoardVO vo = new BoardVO();
+		vo.setSearchCondition(condition);
+		vo.setSearchKeyword(keyword);
+		
 		//페이징 처리
 		//전체건수
 		paging.setTotalRecord(service.getBoardCount(vo));
