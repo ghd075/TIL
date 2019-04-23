@@ -45,7 +45,7 @@
 </form>
 <form action="deleteBoard">
 	<table border="1">
-	<tr><th>번호</th><th>작성자</th><th>제목</th><th>내용</th><th>작성일자</th><th>조회수</th><th>삭제</th></tr>
+	<tr><th>번호</th><th>작성자</th><th>제목</th><th>내용</th><th>작성일자</th><th>조회수</th><th>첨부파일</th><th>삭제</th></tr>
 	<c:forEach items="${list}" var="board">
 		<tr>
 			<td>${board.seq}</a></td>
@@ -53,15 +53,19 @@
 			<%--방법1 --%>
 			<%-- <td><a href="boardUpdate?seq=${board.seq}">${board.title}</td> --%>
 			<%--방법2 --%>
-			<td><a href="boardUpdate/${board.seq}">${board.title}</td>
+			<td><a href="boardUpdate/${board.seq}">${board.title}</a></td>
 			<td>${board.content}</td>
 			<td>${board.regDate}</td>
 			<td>${board.cnt}</td>
+			<td>
+				<a href="FileDown?seq=${board.seq}">${board.filename}</a>
+			</td>
 			<td><input type="checkbox" name="seqs" value="${board.seq}"></td>
 		</tr>
 	</c:forEach>
 	</table>
 	<button>선택삭제</button>
+	<a href="boardInsertForm">글쓰기</a>
 </form>
 </body>
 </html>

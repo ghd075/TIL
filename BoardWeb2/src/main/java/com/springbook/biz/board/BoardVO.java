@@ -15,14 +15,21 @@ public class BoardVO {
 	private String searchCondition;
 	private String searchKeyword;
 	private String[] seqs;
-	private MultipartFile uploadFile;
+	//private MultipartFile uploadFile;
+	private String filename;
 	
-	public MultipartFile getUploadFile() {
-		return uploadFile;
+	/*
+	 * public MultipartFile getUploadFile() { return uploadFile; }
+	 * 
+	 * public void setUploadFile(MultipartFile uploadFile) { this.uploadFile =
+	 * uploadFile; }
+	 */
+	public String getFilename() {
+		return filename;
 	}
 
-	public void setUploadFile(MultipartFile uploadFile) {
-		this.uploadFile = uploadFile;
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 
 	public int getSeq() {
