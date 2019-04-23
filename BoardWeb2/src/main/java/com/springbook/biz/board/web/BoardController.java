@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.common.Paging;
+import com.springbook.biz.common.Paging2;
 
 @Controller
 @SessionAttributes("board")
@@ -81,7 +82,7 @@ public class BoardController {
 	//목록조회
 	@RequestMapping("/boardList")
 	//public String boardList(Model model, BoardVO vo, Paging paging) {
-	public String boardList(Model model, Paging paging, 
+	public String boardList(Model model, Paging2 paging, 
 							@RequestParam(value="searchCondition", 
 										  defaultValue="TITLE", 
 										  required=false) String condition,
@@ -98,9 +99,18 @@ public class BoardController {
 		vo.setSearchKeyword(keyword);
 		
 		//페이징 처리
+		// 페이지번호 파라미터
+		if( paging.getPage() == null) {
+			paging.setPage(1); 
+		}
+				
+		// 시작/마지막 레코드 번호
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
 		//전체건수
 		paging.setTotalRecord(service.getBoardCount(vo));
 		
+		model.addAttribute("paging", paging);
 		model.addAttribute("list", service.getBoardList(vo));
 		return "board";
 	}

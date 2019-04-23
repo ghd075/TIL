@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="my" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>board.jsp</title>
+<script>
+	function go_page(p) {
+		searchFrm.page.value = p;
+		searchFrm.submit();
+	}
+</script>
 </head>
 <body>
 <h3>이미지</h3>
@@ -68,6 +75,7 @@
 	</table>
 	<button>선택삭제</button>
 	<a href="boardInsertForm">글쓰기</a>
+	<my:paging paging="${paging}"/>
 </form>
 </body>
 </html>

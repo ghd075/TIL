@@ -75,31 +75,33 @@
     </select>
     
     <select id="getBoardList" resultMap="boardResult" parameterType="board">
-	    SELECT * 
-	    FROM BOARD
-	    <!-- WHERE 1 = 1 -->
-	    <!-- 동적 쿼리 작성 -->
-	    <where>
-    	<!-- <if test="searchCondition == 'TITLE'"> -->
-    	<!-- 방법2 -->
-    	<if test="searchKeyword != null and searchKeyword != ''">
-	    	<choose>
-	    		<when test="searchCondition == 'TITLE'">
-			        AND TITLE LIKE '%'||#{searchKeyword}||'%' 
-	    		</when>
-	    	<!-- </if> -->
-	    	<!-- <if test="searchCondition == 'CONTENT'"> -->
-	    		<when test="searchCondition == 'CONTENT'">
-			        AND CONTENT LIKE '%'||#{searchKeyword}||'%' 
-	    		</when>
-	    		<when test="searchCondition == 'WRITER'">
-			        AND WRITER LIKE '%'||#{searchKeyword}||'%' 
-	    		</when>
-	    	<!-- </if> -->
-	    	</choose>
-    	</if>
-	    </where>
-    	ORDER BY SEQ
+	    SELECT a.* from ( SELECT b.*, ROWNUM rn FROM (
+		    SELECT * 
+		    FROM BOARD
+		    <!-- WHERE 1 = 1 -->
+		    <!-- 동적 쿼리 작성 -->
+		    <where>
+	    	<!-- <if test="searchCondition == 'TITLE'"> -->
+	    	<!-- 방법2 -->
+	    	<if test="searchKeyword != null and searchKeyword != ''">
+		    	<choose>
+		    		<when test="searchCondition == 'TITLE'">
+				        AND TITLE LIKE '%'||#{searchKeyword}||'%' 
+		    		</when>
+		    	<!-- </if> -->
+		    	<!-- <if test="searchCondition == 'CONTENT'"> -->
+		    		<when test="searchCondition == 'CONTENT'">
+				        AND CONTENT LIKE '%'||#{searchKeyword}||'%' 
+		    		</when>
+		    		<when test="searchCondition == 'WRITER'">
+				        AND WRITER LIKE '%'||#{searchKeyword}||'%' 
+		    		</when>
+		    	<!-- </if> -->
+		    	</choose>
+	    	</if>
+		    </where>
+	    	ORDER BY SEQ
+    	) b ) a WHERE rn BETWEEN #{first} AND #{last}
 </select>
 
 <!-- 페이징 처리 -->
