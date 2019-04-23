@@ -1,5 +1,7 @@
 package com.springbook.biz.board.web;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
@@ -101,7 +104,16 @@ public class BoardController {
 	
 	//등록처리
 	@RequestMapping("/boardInsert")
-	public String boardInsert(BoardVO vo) {
+	public String boardInsert(BoardVO vo) throws IllegalStateException, IOException {
+		//파일 업로드 처리
+		MultipartFile uploadFile = vo.getUploadFile();
+		//첨부 파일이 있으면
+		if(!uploadFile.isEmpty() && uploadFile.getSize() > 0) {
+			String fileName = uploadFile.getOriginalFilename();
+			long filesize = uploadFile.getSize();
+			uploadFile.transferTo(new File("D:\\upload", fileName));
+			System.out.println("업로드파일 : " + fileName + " : " + filesize);
+		}
 		service.insertBoard(vo);
 		return "redirect:boardList";
 	}

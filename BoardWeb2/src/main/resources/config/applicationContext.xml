@@ -15,6 +15,11 @@
 <!-- AOP 설정  -->
 <!-- AOP 관련 어노테이션들을 인식하고 용도에 맞게 처리해줌 -->
 <aop:aspectj-autoproxy/>
+<!-- 파일 업로드 설정 -->
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<property name="maxInMemorySize" value="102400"/>
+	<property name="maxUploadSizePerFile" value="1024000"/>
+</bean>
 <!-- 커넥션 풀 설정 -->
 <context:property-placeholder location="classpath:config/database.properties"/>
 <!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"> -->
