@@ -1,11 +1,15 @@
 package com.springbook.biz.user.web;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+//import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,18 +32,30 @@ public class UserController {
 	
 	//로그인 처리
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public String login(@ModelAttribute("user") UserVO vo, 
+	public void login(@ModelAttribute("user") UserVO vo, 
 						HttpServletRequest request, 
-						HttpSession session) {
+						HttpSession session,
+						HttpServletResponse response) throws IOException {
 		//커맨드 객체는 자동으로 model.addAttribute("user", vo)
 		UserVO user = servie.getUser(vo); 
-		if( user == null)
-			return "login";
+		if( user == null) {
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('id error');");
+			out.print("history.go(-1);"); //이전 페이지로 이동
+			out.println("</script>");
+			//return "login";
+			//return "";
+		}
 		else {
 			session.setAttribute("userName", user.getName());
 			session.setAttribute("Id", user.getId());
 			session.setAttribute("user", user);
-			return "redirect:boardList";
+			//return "redirect:boardList";
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.print("location='boardList';"); //이전 페이지로 이동
+			out.println("</script>");
 		}
 	}
 	

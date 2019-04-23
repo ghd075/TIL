@@ -8,6 +8,8 @@
 <title>board.jsp</title>
 </head>
 <body>
+<h3>이미지</h3>
+<img alt="" src="./images/Chrysanthemum.jpg" style="width: 100px;">
 <h3>게시판</h3>
 <%-- 로그인 성공 --%>
 <c:if test="${not empty sessionScope.userName}">

@@ -150,13 +150,13 @@ public class BoardController {
 
 		BoardVO boardVO = new BoardVO();
 		boardVO.setSeq(Integer.parseInt(seq));
-		BoardVO result = service.getBoard(boardVO);
+		BoardVO result = service.getBoard(boardVO); //board테이블에서 단건조회!!
 
-		File uFile = new File("d:/upload/", result.getFilename());
+		File uFile = new File("d:/upload/", result.getFilename()); //파일이 저장되어 있는 경로 지정
 		long fSize = uFile.length();
 
 		if (fSize > 0) {
-			String mimetype = "application/x-msdownload";
+			String mimetype = "application/x-msdownload"; //다운로드 타입에 따라서 다운로드방식이 다르다.
 
 			response.setContentType(mimetype);
 			setDisposition(result.getFilename(), request, response);
