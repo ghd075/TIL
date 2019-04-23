@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.common.Paging;
 
 @Controller
+@SessionAttributes("board")
 public class BoardController {
 	
 	@Autowired
@@ -41,6 +44,8 @@ public class BoardController {
 		vo.setSeq(seq); //seq 값 넘기기
 		//단건조회
 		model.addAttribute("board", service.getBoard(vo));
+		//컨트롤러 메소드가 생성하는 모델 정보 중에서 @SessionAttributes에 지정한 이름과
+		//동일한 이름이 있다면 이를 세션에 저장해준다.
 		return "boardUpdate";
 	}
 	
@@ -53,8 +58,11 @@ public class BoardController {
 	
 	//수정처리
 	@RequestMapping(value="/boardUpdate", method=RequestMethod.POST)
-	public String boardUpdate(BoardVO vo) {
+	public String boardUpdate(@ModelAttribute("board") BoardVO vo
+							  ,SessionStatus st) {
+		System.out.println("===update 파라미터 확인===\n"+vo);
 		service.updateBoard(vo);
+		st.setComplete(); //@SessionAttributes로 지정한 세션 속성을 지운다.
 		return "redirect:boardList";
 	}
 	
