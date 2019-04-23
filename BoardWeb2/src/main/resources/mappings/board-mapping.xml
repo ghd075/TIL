@@ -79,6 +79,9 @@
 	    		<when test="searchCondition == 'CONTENT'">
 			        AND CONTENT LIKE '%'||#{searchKeyword}||'%' 
 	    		</when>
+	    		<when test="searchCondition == 'WRITER'">
+			        AND WRITER LIKE '%'||#{searchKeyword}||'%' 
+	    		</when>
 	    	<!-- </if> -->
 	    	</choose>
     	</if>

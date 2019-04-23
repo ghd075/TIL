@@ -1,8 +1,12 @@
 package com.springbook.biz.board.web;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,6 +21,16 @@ public class BoardController {
 	
 	@Autowired
 	BoardService service;
+	
+	@ModelAttribute("condMap")
+	public Map<String, String> searchConditionMap()
+	{
+		Map<String, String> conditionMap = new HashMap<String, String>();
+		conditionMap.put("제목", "TITLE");
+		conditionMap.put("내용", "CONTENT");
+		conditionMap.put("작성자", "WRITER");
+		return conditionMap;
+	}
 	
 	//수정폼
 	//방법2

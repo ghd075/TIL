@@ -26,12 +26,15 @@
 	<select name="searchCondition">
 		<option value="">선택</option>
 		<!-- 방법1 JSTL(if태그)사용 -->
-		<option value="TITLE"
+		<!-- <option value="TITLE" -->
 		<%-- <c:if test="${boardVO.searchCondition=='CONTENT'}">selected</c:if> --%>
-		>제목</option>
-		<option value="CONTENT"
+		<!-- >제목</option> -->
+		<!-- <option value="CONTENT" -->
 		<%-- <c:if test="${boardVO.searchCondition=='CONTENT'}">selected</c:if> --%>
-		>내용</option>
+		<!-- >내용</option> -->
+		<c:forEach items="${condMap}" var="option">
+			<option value="${option.value}">${option.key}
+		</c:forEach>
 	</select>
 	<!-- 방법2 자바스크립트사용 -->
 	<script>
