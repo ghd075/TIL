@@ -7,6 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>board.jsp</title>
+<style>
+	li { display: inline;}
+</style>
 <script>
 	function go_page(p) {
 		searchFrm.page.value = p;
@@ -31,6 +34,7 @@
 <%-- ${list} --%>
 <%-- 검색조건 : ${boardVO} --%>
 <form name="searchFrm">
+    <input type="hidden" name="page">
 	<!-- input태그에 키워드를 넣고 검색하면 값이 그대로 보이는 기능 -->
 	<select name="searchCondition">
 		<option value="">선택</option>
@@ -75,7 +79,7 @@
 	</table>
 	<button>선택삭제</button>
 	<a href="boardInsertForm">글쓰기</a>
-	<my:paging paging="${paging}"/>
 </form>
+<my:paging paging="${paging}"/>
 </body>
 </html>

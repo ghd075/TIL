@@ -28,7 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
-import com.springbook.biz.common.Paging;
+//import com.springbook.biz.common.Paging;
 import com.springbook.biz.common.Paging2;
 
 @Controller
@@ -100,7 +100,7 @@ public class BoardController {
 		
 		//페이징 처리
 		// 페이지번호 파라미터
-		if( paging.getPage() == null) {
+		if( paging.getPage() == 0) {
 			paging.setPage(1); 
 		}
 				

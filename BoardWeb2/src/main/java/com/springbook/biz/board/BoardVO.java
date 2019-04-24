@@ -3,7 +3,7 @@ package com.springbook.biz.board;
 import java.sql.Date;
 import java.util.Arrays;
 
-import org.springframework.web.multipart.MultipartFile;
+//import org.springframework.web.multipart.MultipartFile;
 
 public class BoardVO {
 	private int seq;
@@ -26,10 +26,6 @@ public class BoardVO {
 	 * public void setUploadFile(MultipartFile uploadFile) { this.uploadFile =
 	 * uploadFile; }
 	 */
-	public String getFilename() {
-		return filename;
-	}
-
 	public int getFirst() {
 		return first;
 	}
@@ -44,6 +40,10 @@ public class BoardVO {
 
 	public void setLast(int last) {
 		this.last = last;
+	}
+	
+	public String getFilename() {
+		return filename;
 	}
 
 	public void setFilename(String filename) {
