@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>boardInsert.jsp</title>
+<script>
+	if("${boardVO.seq}" == -1){
+		alert('${boardVO.msg}');
+	}
+</script>
 </head>
 <body>
 <h3>게시글 등록</h3>

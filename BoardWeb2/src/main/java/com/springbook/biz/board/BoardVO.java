@@ -12,6 +12,7 @@ public class BoardVO {
 	private String content;
 	private Date regDate;
 	private int cnt;
+	private String msg;
 	private String searchCondition;
 	private String searchKeyword;
 	private String[] seqs;
@@ -121,11 +122,20 @@ public class BoardVO {
 	public void setSeqs(String[] seqs) {
 		this.seqs = seqs;
 	}
+	
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
 
 	@Override
 	public String toString() {
 		return "BoardVO [seq=" + seq + ", title=" + title + ", writer=" + writer + ", content=" + content + ", regDate="
-				+ regDate + ", cnt=" + cnt + ", searchCondition=" + searchCondition + ", searchKeyword=" + searchKeyword
-				+ ", seqs=" + Arrays.toString(seqs) + "]";
+				+ regDate + ", cnt=" + cnt + ", msg=" + msg + ", searchCondition=" + searchCondition
+				+ ", searchKeyword=" + searchKeyword + ", seqs=" + Arrays.toString(seqs) + ", filename=" + filename
+				+ ", first=" + first + ", last=" + last + "]";
 	}
 }

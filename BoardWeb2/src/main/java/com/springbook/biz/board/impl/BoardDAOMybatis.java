@@ -13,8 +13,10 @@ public class BoardDAOMybatis {
 	SqlSessionTemplate mybatis;
 	
 	public void insertBoard(BoardVO vo) {
-		System.out.println("===> Mybatis로 insertBoard() 기능 처리");
-		mybatis.insert("BoardDAO.insertBoard",vo);
+		//System.out.println("===> Mybatis로 insertBoard() 기능 처리");
+		//mybatis.insert("BoardDAO.insertBoard",vo);
+		System.out.println("===> Mybatis로 insertBoard() 기능(procedure) 처리");
+		mybatis.insert("BoardDAO.insertBoardProcedure",vo);
 	}
 	
 	public void updateBoard(BoardVO vo) {

@@ -13,6 +13,14 @@
         <result property="cnt" column="CNT" />
     </resultMap>
 
+    <insert id="insertBoardProcedure" statementType="CALLABLE" parameterType="board">
+		{ call BOARD_INS_PROC(#{title}
+		                    , #{writer}
+		                    , #{content}
+		                    , #{seq, mode=OUT, jdbcType=NUMERIC, javaType=java.lang.Integer}
+		                    , #{msg, mode=OUT, jdbcType=VARCHAR, javaType=string} )}  <!-- 프로시져의 parameter중 in값은 default로서 따로 지정하지 않아도 되고 out값은 따로 지정해주어야 함 -->  
+    </insert>
+
     <insert id="insertBoard" parameterType="board">
         <!-- <![CDATA[ -->
         INSERT INTO BOARD(SEQ

@@ -135,7 +135,11 @@ public class BoardController {
 			System.out.println("업로드파일 : " + filename + " : " + filesize);
 		}
 		service.insertBoard(vo);
-		return "redirect:boardList";
+		if(vo.getSeq() == -1) {
+			return "boardInsert";
+		}else {
+			return "redirect:boardList";
+		}
 	}
 	
 	//삭제
