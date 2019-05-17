@@ -34,7 +34,7 @@
 <%-- ${list} --%>
 <%-- 검색조건 : ${boardVO} --%>
 <form name="searchFrm">
-    <input type="hidden" name="page">
+    <input type="hidden" name="page" value="1">
 	<!-- input태그에 키워드를 넣고 검색하면 값이 그대로 보이는 기능 -->
 	<select name="searchCondition">
 		<option value="">선택</option>
