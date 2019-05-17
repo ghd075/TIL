@@ -82,21 +82,23 @@ public class BoardController {
 	//목록조회
 	@RequestMapping("/boardList")
 	//public String boardList(Model model, BoardVO vo, Paging paging) {
-	public String boardList(Model model, Paging2 paging, 
-							@RequestParam(value="searchCondition", 
+	public String boardList(Model model, Paging2 paging,
+							BoardVO vo)
+							/*@RequestParam(value="searchCondition", 
 										  defaultValue="TITLE", 
 										  required=false) String condition,
 							@RequestParam(value="searchKeyword", 
-										  required=false) String keyword) {
+										  required=false) String keyword) */
+	{
 							//방법1
 							//@RequestParam(value="searchKeyword", defaultValue="", required=false) String searchKeyword) {
 		/*
 		 * ArrayList<String> list = new ArrayList<String>(); list.add("사과");
 		 * list.add("바나나");
 		 */
-		BoardVO vo = new BoardVO();
+		/*BoardVO vo = new BoardVO();
 		vo.setSearchCondition(condition);
-		vo.setSearchKeyword(keyword);
+		vo.setSearchKeyword(keyword);*/
 		
 		//페이징 처리
 		// 페이지번호 파라미터
